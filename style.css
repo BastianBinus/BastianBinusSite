@@ -1,0 +1,61 @@
+html { font-size: 18px; }
+
+body {
+  font-family: sans-serif;
+  
+}
+
+header {
+  text-align: center;
+  margin: 20px;
+}
+
+.header-box {
+  width: 50%;
+  margin: auto;
+}
+/*NavBar*/
+.btn {
+  display: inline-block;
+  border: none;
+  outline: none;
+  padding: 0.5556rem 1rem;
+  background-color: #333333;
+  color: black;
+  text-decoration: none;
+  font-size: 17px;
+  cursor: pointer;
+  border-radius: 9999px;
+}
+.btn:hover {
+  background-color: #111111;
+  color: white;
+}
+.active {
+  background-color: #04AA6D;
+  color: white;
+}
+
+/*Projekte Container*/
+
+.Projects-Container {
+  margin: 1rem;
+  display: grid;
+  background-color: #04AA6D;
+  grid-template-columns: 1fr 40% 1.5fr 30% 1fr;
+  grid-template-rows: auto auto;
+  column-gap: normal;
+  row-gap: normal;
+}
+
+.Projects-Div, .Projects-Div-Empty {
+  text-align: center;
+}
+
+.Projects-Container .Projects-Div {
+  border-style: ridge;
+
+}
+.Projects-Container .Projects-Div-Empty {
+  border-style: dotted;
+}
