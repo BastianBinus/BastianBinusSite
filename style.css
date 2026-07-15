@@ -1,29 +1,47 @@
-html { font-size: 18px; }
+html { font-size: 16px; }
 
 body {
   font-family: sans-serif;
-  
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+  'header header header'
+  'title title title'
+  'main main main'
+  'footer footer footer';
+  grid-template-rows: auto auto 1fr auto;
 }
 
 header {
   text-align: center;
-  margin: 20px;
+  margin-top: 10px;
+  margin-bottom: 2px;
 }
 
-.header-box {
-  width: 50%;
-  margin: auto;
+#header-box {
+  grid-area: header;
+  background-color: purple;
 }
+
+#title-box {
+  grid-area: title;
+  background-color: darkgreen;
+  height: 45rem;
+}
+
 /*NavBar*/
 .btn {
   display: inline-block;
   border: none;
   outline: none;
-  padding: 0.5556rem 1rem;
+  padding: 0.5rem 1rem;
+  margin: 0.25rem;
+  height: auto;
   background-color: #333333;
   color: black;
   text-decoration: none;
-  font-size: 17px;
+  font-size: 1rem;
   cursor: pointer;
   border-radius: 9999px;
 }
@@ -35,27 +53,62 @@ header {
   background-color: #04AA6D;
   color: white;
 }
+/*Site Container*/
+
+#Projects-Container {
+  display: grid;
+  grid-area: main;
+  margin: 1rem 15%;
+  width: 70%;
+  height:100rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas:
+  'projectOne  projectTwo   projectTwo'
+  'projectThree projectThree projectFour';
+  gap: 4rem;
+  
+  /*
+  projectOne (span 1 → 1fr)
+  projectTwo (span 2 → 2fr)
+  projectThree (span 2 → 2fr)
+  projectFour (span 1 → 1fr)
+  */
+}
+
 
 /*Projekte Container*/
 
-.Projects-Container {
-  margin: 1rem;
-  display: grid;
-  background-color: #04AA6D;
-  grid-template-columns: 1fr 40% 1.5fr 30% 1fr;
-  grid-template-rows: auto auto;
-  column-gap: normal;
-  row-gap: normal;
+div {
+  border-radius: 50px;
 }
 
-.Projects-Div, .Projects-Div-Empty {
-  text-align: center;
+.Project-One {
+  grid-area: projectOne;
+  background-color: yellow;
+  height: auto;
 }
 
-.Projects-Container .Projects-Div {
-  border-style: ridge;
-
+.Project-Two {
+  grid-area: projectTwo;
+  background-color: yellowgreen;
+  height:auto;
 }
-.Projects-Container .Projects-Div-Empty {
-  border-style: dotted;
+
+.Project-Three{
+  grid-area: projectThree;
+  background-color: red;
+  height: auto;
+}
+
+.Project-Four {
+grid-area: projectFour;
+background-color: blue;
+height: auto;
+}
+
+#Footer-Container {
+  grid-area: footer;
+  background-color: beige;
+  margin-top:20rem;
+  height:10rem;
 }
