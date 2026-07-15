@@ -64,3 +64,8 @@ function rgbToHex(r, g, b) {
   const hexVal = `#${rHex}${gHex}${bHex}`
   return hexVal
 }
+
+//Should be used after calling hslToRgb
+function rgbOutputFunction (r, g, b){
+  return `rgb(${r}, ${g}, ${b})`
+}
