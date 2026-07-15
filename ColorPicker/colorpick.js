@@ -11,7 +11,23 @@ function updatePreview() {
     let rgbOut = rgbOutputFunction(rVal, gVal, bVal)
     document.getElementById("hexOutput").value = HexOut;
     document.getElementById("rgbOutput").value = rgbOut;
+    document.getElementById("hue-val").textContent = `${hue}°`
+    document.getElementById("sat-val").textContent = `${sat}%`
+    document.getElementById("light-val").textContent = `${light}%`
+
 }
+
+function copyValue(elementId) {
+    const value = document.getElementById(elementId).value;
+    navigator.clipboard.writeText(value)
+    const btn = event.currentTarget;
+    const original = btn.innerHTML;
+    btn.innerHTML = "✓";
+    setTimeout(() => btn.innerHTML = original, 1000);
+}
+
+
+
 
 document.getElementById("Hue").addEventListener("input", function() {
     const hueValue = this.value;
@@ -22,4 +38,4 @@ document.getElementById("Hue").addEventListener("input", function() {
 document.getElementById("Hue").addEventListener("input", updatePreview);
 document.getElementById("Saturation").addEventListener("input", updatePreview);
 document.getElementById("Lightness").addEventListener("input", updatePreview);
-
+document.getElementById("Hue").dispatchEvent(new Event("input"));

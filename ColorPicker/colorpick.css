@@ -1,7 +1,109 @@
+/* Generel styling */
+* { font-family: 'Inter', sans-serif; }
+
+.composerContainer{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    background-color: white;
+    box-shadow: 10px 10px 10px 10px rgba(0,0,0,0.1);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+    'title   title'
+    'controls rightside';
+    grid-template-rows: auto 1fr;
+    gap: 24px;
+    border-radius: 20px;
+    max-width: 700px;
+    min-width: 0;
+   
+}
+
+.rightside {
+    grid-area: rightside;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.controls,
+.rightside {
+    min-width: 0;
+}
+
+.controls {
+    grid-area: controls;
+    margin: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+}
+
+.output {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.output-field {
+    position: relative;  
+}
+
+.output-field input {
+    box-sizing: border-box;
+    font-family: monospace;
+    background-color: #f3f4f6;
+    width: 100%;
+    padding: 10px 12px;
+    padding-right: 40px;
+    border-radius: 8px;
+}
+
+.output-field button {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;       
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.color-preview {
+    width: 100%;
+}
+
+.titleDiv {
+    grid-area:title;
+    text-align: center;
+}
+
+.titleDiv h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: 3px;
+}
+
+
 /* HUE-Slider */
 
 input[type="range"]#Hue::-webkit-slider-runnable-track {
     height: 16px;
+    border-radius: 999px;
+    border: none;
     background: linear-gradient(to right,
   hsl(0, 100%, 50%) 0%,
   hsl(60, 100%, 50%) 16.67%,
@@ -25,7 +127,7 @@ input[type="range"]#Hue::-moz-range-track{
 }
 
 input[type="range"] {
-    width:400px;
+    width: 100%;
     border-radius: 20px;
     border-style: solid;
     -webkit-appearance: none;
@@ -35,8 +137,9 @@ input[type="range"]::-webkit-slider-thumb {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    background: black;
-    margin-top: -2px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    margin: -2px;
+    border: 3px solid white;
     -webkit-appearance: none;
     appearance: none;
 }
@@ -55,6 +158,8 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]#Lightness::-webkit-slider-runnable-track {
     height: 16px;
+    border-radius: 999px;
+    border: none;
     background: linear-gradient(to right,
     hsl(0, 100%, 0%),
     hsl(var(--hue, 0), 100%, 50%),
@@ -74,6 +179,8 @@ input[type="range"]#Lightness::-moz-range-track {
 
 input[type="range"]#Saturation::-webkit-slider-runnable-track {
     height: 16px;
+    border-radius: 999px;
+    border: none;
     background: linear-gradient(to right, hsl(var(--hue, 0), 0%, 50%), hsl(var(--hue, 0), 100%, 50%));
 }
 input[type="range"]#Saturation::-moz-range-track {
@@ -86,6 +193,9 @@ input[type="range"]#Saturation::-moz-range-track {
 .color-preview span {
     background-color: hsl(var(--h, 0), var(--s, 0%), var(--l, 50%));
     display: block;
-    width: 100px;
-    height: 100px;
+    width: 50%;
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
+    border-radius:20px;
+    aspect-ratio: 1 / 1;
+    justify-self: center;
 }
