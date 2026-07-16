@@ -1,17 +1,75 @@
-html { font-size: 16px; }
+/* ==========================================================================
+   1. GLOBAL / RESET
+   ========================================================================== */
+:root {
+  /* Basis */
+  --color-bg: #f4ede1; 
+  --color-nav-bg: #ece3d3;
+  --color-text-dark: #1c1a17;
+  --color-text-light: #f7f2ea;
+  --color-text-muted: #8a8378;
+  --color-text-body: #3a352e;
+ 
+
+  /* Akzentfarben */
+  --color-tile-terracotta: #e8b8a0;
+  --color-tile-sage: #b9cdb0;
+  --color-tile-sky: #b7c8dd;
+  --color-tile-lavender: #d6bfe0;
+
+  /* Label-Farben pro Kachel */
+  --color-tile-terracotta-text: #6b4a3a;
+  --color-tile-sage-text: #445a3a;
+  --color-tile-sky-text: #38455c;
+  --color-tile-lavender-text: #563a5c;
+
+  /* Fonts */
+  --font-body: 'Inter', sans-serif;
+  --font-heading: 'Space Grotesk', sans-serif;
+
+  /* Radius */
+  --radius-pill: 9999px;
+}
+
+
+html {
+  font-size: 16px;
+}
+
+/* Generische Regel – betrifft ALLE divs der Seite, nicht nur Projekte.
+   Achtung: das ist der Grund, warum jedes div automatisch runde Ecken hat. */
+div {
+  border-radius: 50px;
+}
+
+
+
+
+
+/* ==========================================================================
+   2. PAGE LAYOUT (Grid für body: header / title / main / footer)
+   ========================================================================== */
 
 body {
-  font-family: sans-serif;
+  font-family: var(--font-body);
   text-align: center;
   display: grid;
+  background-color: var(--color-bg);
+  margin: 0;
+  padding: 0;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas: 
-  'header header header'
-  'title title title'
-  'main main main'
-  'footer footer footer';
   grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    'header header header'
+    'title  title  title'
+    'main   main   main'
+    'footer footer footer';
 }
+
+
+/* ==========================================================================
+   3. HEADER / NAVBAR
+   ========================================================================== */
 
 header {
   text-align: center;
@@ -21,94 +79,125 @@ header {
 
 #header-box {
   grid-area: header;
-  background-color: purple;
 }
 
-#title-box {
-  grid-area: title;
-  background-color: darkgreen;
-  height: 45rem;
-}
-
-/*NavBar*/
-.btn {
+/* NavBar-Buttons */
+#main-nav .btn {
   display: inline-block;
   border: none;
   outline: none;
-  padding: 0.5rem 1rem;
+  padding: 1rem 2rem;
   margin: 0.25rem;
   height: auto;
-  background-color: #333333;
-  color: black;
+  background-color: transparent;
+  color: var(--color-text-dark);
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.25rem;
   cursor: pointer;
-  border-radius: 9999px;
+  border-radius: var(--radius-pill);
 }
-.btn:hover {
-  background-color: #111111;
-  color: white;
-}
-.active {
-  background-color: #04AA6D;
-  color: white;
-}
-/*Site Container*/
 
+.navBg {
+  background-color: var(--color-nav-bg);
+  width: fit-content;
+  justify-self: center;
+  padding: 1px;
+}
+
+#main-nav .btn:hover {
+  background-color: var(--color-text-body);
+  color: var(--color-text-light)
+}
+
+#main-nav > div > a.active {
+  background-color: var(--color-text-dark);
+  color: var(--color-text-light); 
+}
+
+#main-nav .btn:active {
+  background-color: transparent;
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-text-dark);
+}
+
+/* ==========================================================================
+   4. TITLE SECTION
+   ========================================================================== */
+
+#title-box {
+  grid-area: title;
+  height: auto;
+  font-family: var(--font-heading);
+  font-weight: bold;
+}
+
+#title-box > h1 {
+  font-size: 7rem;
+}
+
+
+/* ==========================================================================
+   5. PROJECTS SECTION
+   ========================================================================== */
+
+/* Äußerer Container – noch als Grid gestylt (main-Bereich des body-Grids) */
 #Projects-Container {
-  display: grid;
+  display:flex;
+  flex-direction: column;
   grid-area: main;
   margin: 1rem 15%;
   width: 70%;
-  height:100rem;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-areas:
-  'projectOne  projectTwo   projectTwo'
-  'projectThree projectThree projectFour';
-  gap: 4rem;
-  
-  /*
-  projectOne (span 1 → 1fr)
-  projectTwo (span 2 → 2fr)
-  projectThree (span 2 → 2fr)
-  projectFour (span 1 → 1fr)
-  */
+  height: auto;
+  row-gap: 10px;
+}
+
+/* Reihen-Wrapper (neu, für Flexbox-Umstellung) */
+.Project-Line {
+  display: flex;
+  column-gap: 10px;
+  height: 40rem;
+}
+
+.Projects-Div {
+  flex-basis: 0%;
+  flex-grow: 1;
+}
+
+/* Einzelne Projekt-Kacheln – aktiver Zustand */
+.Projects-Div.active {
+  flex-grow: 3;
 }
 
 
-/*Projekte Container*/
-
-div {
-  border-radius: 50px;
-}
-
-.Project-One {
-  grid-area: projectOne;
-  background-color: yellow;
+/* Individuelle Kacheln – aktuell noch per grid-area positioniert */
+#Project-One {
+  background-color: var(--color-tile-terracotta);
   height: auto;
 }
 
-.Project-Two {
-  grid-area: projectTwo;
-  background-color: yellowgreen;
-  height:auto;
-}
-
-.Project-Three{
-  grid-area: projectThree;
-  background-color: red;
+#Project-Two {
+  background-color: var(--color-tile-sage);
   height: auto;
 }
 
-.Project-Four {
-grid-area: projectFour;
-background-color: blue;
-height: auto;
+#Project-Three {
+  background-color: var(--color-tile-sky);
+  height: auto;
 }
+
+#Project-Four {
+  background-color: var(--color-tile-lavender);
+  height: auto;
+}
+
+
+/* ==========================================================================
+   6. FOOTER
+   ========================================================================== */
 
 #Footer-Container {
   grid-area: footer;
   background-color: beige;
-  margin-top:20rem;
-  height:10rem;
+  margin-top: 5rem;
+  height: 10rem;
 }
