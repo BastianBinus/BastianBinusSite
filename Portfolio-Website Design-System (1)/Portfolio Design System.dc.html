@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; }
+  ::selection { background: #1c1a17; color: #f7f2ea; }
+</style>
+</helmet>
+
+<div style="background: #f4ede1; min-height: 100vh; font-family: 'Inter', sans-serif; color: #1c1a17; padding: 6rem 5vw 8rem;">
+
+  <div style="max-width: 1200px; margin: 0 auto 6rem;">
+    <div style="font: 500 0.75rem/1 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin-bottom: 1rem;">Design System — Referenzblatt</div>
+    <h1 style="font: 700 3.5rem/1.05 'Space Grotesk', sans-serif; margin: 0; max-width: 14ch;">Persönliches Portfolio</h1>
+    <p style="font: 400 1rem/1.6 'Inter', sans-serif; color: #5c564c; max-width: 46ch; margin-top: 1.5rem;">Matt, pastellig, editorial-modern. Gedämpfte Farbtöne, großzügiger Weißraum, weiche große Rundungen.</p>
+  </div>
+
+  <!-- COLORS -->
+  <section style="max-width: 1200px; margin: 0 auto 6rem;">
+    <div style="font: 500 0.75rem/1 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin-bottom: 1.5rem;">01 — Farben</div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2rem;">
+      <div style="background: #f4ede1; border: 1px solid #e2d8c6; border-radius: 24px; height: 140px; display: flex; align-items: flex-end; padding: 1.25rem;">
+        <div>
+          <div style="font: 600 0.875rem 'Inter', sans-serif;">Seiten-Hintergrund</div>
+          <div style="font: 400 0.75rem 'Inter', sans-serif; color: #8a8378; margin-top: 0.25rem;">#F4EDE1 · oklch(94% 0.017 80)</div>
+        </div>
+      </div>
+      <div style="background: #1c1a17; border-radius: 24px; height: 140px; display: flex; align-items: flex-end; padding: 1.25rem;">
+        <div>
+          <div style="font: 600 0.875rem 'Inter', sans-serif; color: #f7f2ea;">Dunkel (Text/Active)</div>
+          <div style="font: 400 0.75rem 'Inter', sans-serif; color: #a39c8f; margin-top: 0.25rem;">#1C1A17 · oklch(20% 0.01 70)</div>
+        </div>
+      </div>
+      <div style="background: #f7f2ea; border: 1px solid #e2d8c6; border-radius: 24px; height: 140px; display: flex; align-items: flex-end; padding: 1.25rem;">
+        <div>
+          <div style="font: 600 0.875rem 'Inter', sans-serif;">Hell (Text auf Dunkel)</div>
+          <div style="font: 400 0.75rem 'Inter', sans-serif; color: #8a8378; margin-top: 0.25rem;">#F7F2EA · oklch(97% 0.006 80)</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="font: 500 0.7rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin: 2rem 0 1rem;">Hintergrund-Varianten — mit sanftem Farbverlauf</div>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem; margin-bottom: 1rem;">
+      <div style="border-radius: 24px; height: 120px; background: radial-gradient(circle at 25% 20%, #e8dcc4 0%, #f4ede1 45%), radial-gradient(circle at 80% 85%, #dcc9a8 0%, #f4ede1 55%), #f4ede1; border: 1px solid #e2d8c6;"></div>
+      <div style="border-radius: 24px; height: 120px; background: radial-gradient(circle at 20% 20%, #f0c9ac 0%, #e8b8a0 50%), radial-gradient(circle at 85% 80%, #d99e80 0%, #e8b8a0 60%), #e8b8a0;"></div>
+      <div style="border-radius: 24px; height: 120px; background: radial-gradient(circle at 20% 20%, #cfe0c4 0%, #b9cdb0 50%), radial-gradient(circle at 85% 80%, #9fb894 0%, #b9cdb0 60%), #b9cdb0;"></div>
+      <div style="border-radius: 24px; height: 120px; background: radial-gradient(circle at 20% 20%, #cddaea 0%, #b7c8dd 50%), radial-gradient(circle at 85% 80%, #9cb2cc 0%, #b7c8dd 60%), #b7c8dd;"></div>
+      <div style="border-radius: 24px; height: 120px; background: radial-gradient(circle at 20% 20%, #e6d4ee 0%, #d6bfe0 50%), radial-gradient(circle at 85% 80%, #c2a2cf 0%, #d6bfe0 60%), #d6bfe0;"></div>
+    </div>
+    <div style="font: 400 0.75rem 'Inter', sans-serif; color: #8a8378; margin-bottom: 2rem;">Optional als Seiten- oder Kachel-Hintergrund statt Flächenfarbe — gleiche Palette, weicher Verlauf mit leicht dunklerem/wärmerem Farbklecks.</div>
+
+    <div style="font: 500 0.7rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin: 2rem 0 1rem;">Akzentfarben — Projekt-Kacheln</div>
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;">
+      <div style="background: #e8b8a0; border-radius: 24px; height: 120px; display: flex; align-items: flex-end; padding: 1.25rem;">
+        <div>
+          <div style="font: 600 0.8rem 'Inter', sans-serif;">Terracotta</div>
+          <div style="font: 400 0.7rem 'Inter', sans-serif; color: #6b4a3a; margin-top: 0.2rem;">oklch(78% 0.08 40)</div>
+        </div>
+      </div>
+      <div style="background: #b9cdb0; border-radius: 24px; height: 120px; display: flex; align-items: flex-end; padding: 1.25rem;">
+        <div>
+          <div style="font: 600 0.8rem 'Inter', sans-serif;">Salbei</div>
+          <div style="font: 400 0.7rem 'Inter', sans-serif; color: #445a3a; margin-top: 0.2rem;">oklch(78% 0.06 145</div>
+        </div>
+      </div>
+      <div style="background: #b7c8dd; border-radius: 24px; height: 120px; display: flex; align-items: flex-end; padding: 1.25rem;">
+        <div>
+          <div style="font: 600 0.8rem 'Inter', sans-serif;">Himmelblau</div>
+          <div style="font: 400 0.7rem 'Inter', sans-serif; color: #38455c; margin-top: 0.2rem;">oklch(78% 0.055 240)</div>
+        </div>
+      </div>
+      <div style="background: #d6bfe0; border-radius: 24px; height: 120px; display: flex; align-items: flex-end; padding: 1.25rem;">
+        <div>
+          <div style="font: 600 0.8rem 'Inter', sans-serif;">Lavendel</div>
+          <div style="font: 400 0.7rem 'Inter', sans-serif; color: #563a5c; margin-top: 0.2rem;">oklch(78% 0.06 310)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACKGROUND TECHNIQUE -->
+  <section style="max-width: 1200px; margin: 0 auto 6rem;">
+    <div style="font: 500 0.75rem/1 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin-bottom: 1.5rem;">01b — Hintergrund-Technik (Blur-Blobs)</div>
+    <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2.5rem; align-items: stretch;">
+      <div style="position: relative; overflow: hidden; border-radius: 32px; background: #f4ede1; height: 260px;">
+        <div style="position: absolute; width: 320px; height: 320px; background: #e8b8a0; border-radius: 50%; filter: blur(90px); top: -90px; left: -40px; opacity: 0.75;"></div>
+        <div style="position: absolute; width: 280px; height: 280px; background: #b9cdb0; border-radius: 50%; filter: blur(90px); bottom: -110px; right: -20px; opacity: 0.7;"></div>
+        <div style="position: absolute; width: 220px; height: 220px; background: #b7c8dd; border-radius: 50%; filter: blur(90px); top: 40%; left: 40%; opacity: 0.5;"></div>
+        <div style="position: relative; z-index: 1; height: 100%; display: flex; align-items: center; justify-content: center; font: 600 1.1rem 'Space Grotesk', sans-serif; color: #1c1a17;">Hi. I'm Seán.</div>
+      </div>
+      <div style="font: 400 0.9rem/1.7 'Inter', sans-serif; color: #3a352e;">
+        <div style="font: 600 1rem 'Space Grotesk', sans-serif; margin-bottom: 0.75rem;">So wird's gebaut</div>
+        Kein Bild — nur 2–3 farbige Kreise (<code>div</code>, <code>border-radius:50%</code>) absolut hinter dem Content platziert, mit <code>filter: blur(80–120px)</code> weichgezeichnet und <code>opacity: 0.5–0.75</code>. Container braucht <code>position:relative; overflow:hidden</code>. Farben aus der Akzent-Palette wählen — der Blur sorgt automatisch für den matten, verwaschenen Look.
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPOGRAPHY -->
+  <section style="max-width: 1200px; margin: 0 auto 6rem;">
+    <div style="font: 500 0.75rem/1 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin-bottom: 1.5rem;">02 — Typografie</div>
+
+    <div style="display: flex; flex-direction: column; gap: 2.5rem; border-top: 1px solid #e2d8c6; padding-top: 2rem;">
+      <div style="display: flex; align-items: baseline; gap: 2rem;">
+        <div style="font: 500 0.7rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; width: 140px; flex-shrink: 0;">H1 · 3.5rem / Bold</div>
+        <div style="font: 700 3.5rem/1.05 'Space Grotesk', sans-serif;">Seitentitel</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 2rem;">
+        <div style="font: 500 0.7rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; width: 140px; flex-shrink: 0;">H2 · 1.75rem / Semibold</div>
+        <div style="font: 600 1.75rem/1.2 'Space Grotesk', sans-serif;">Kachel-Titel</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 2rem;">
+        <div style="font: 500 0.7rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; width: 140px; flex-shrink: 0;">Body · 1rem</div>
+        <div style="font: 400 1rem/1.6 'Inter', sans-serif; max-width: 42ch; color: #3a352e;">Fließtext für Beschreibungen und längere Absätze auf der Seite.</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 2rem;">
+        <div style="font: 500 0.7rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; width: 140px; flex-shrink: 0;">Caption · 0.75rem</div>
+        <div style="font: 500 0.75rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378;">Category Label</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BUTTONS -->
+  <section style="max-width: 1200px; margin: 0 auto 6rem;">
+    <div style="font: 500 0.75rem/1 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin-bottom: 1.5rem;">03 — Buttons / Navigation</div>
+    <div style="display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;">
+      <button style="background: #1c1a17; color: #f7f2ea; border: none; border-radius: 9999px; padding: 0.5rem 1rem; font: 500 0.875rem 'Inter', sans-serif; cursor: pointer;">Primary Button</button>
+      <button style="background: #2e2a25; color: #f7f2ea; border: none; border-radius: 9999px; padding: 0.5rem 1rem; font: 500 0.875rem 'Inter', sans-serif; cursor: pointer;">Hover State</button>
+      <button style="background: transparent; color: #1c1a17; border: 1px solid #1c1a17; border-radius: 9999px; padding: 0.5rem 1rem; font: 500 0.875rem 'Inter', sans-serif; cursor: pointer;">Secondary</button>
+      <div style="display: flex; gap: 0.5rem; background: #ece3d3; border-radius: 9999px; padding: 0.35rem;">
+        <div style="background: #1c1a17; color: #f7f2ea; border-radius: 9999px; padding: 0.4rem 0.9rem; font: 500 0.8rem 'Inter', sans-serif;">Work</div>
+        <div style="color: #5c564c; border-radius: 9999px; padding: 0.4rem 0.9rem; font: 500 0.8rem 'Inter', sans-serif;">About</div>
+        <div style="color: #5c564c; border-radius: 9999px; padding: 0.4rem 0.9rem; font: 500 0.8rem 'Inter', sans-serif;">Contact</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TILES -->
+  <section style="max-width: 1200px; margin: 0 auto;">
+    <div style="font: 500 0.75rem/1 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #8a8378; margin-bottom: 1.5rem;">04 — Projekt-Kacheln</div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2.5rem;">
+
+      <div style="background: #e8b8a0; border-radius: 40px; padding: 2.5rem; position: relative; overflow: visible; height: 380px;">
+        <div style="font: 500 0.75rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #6b4a3a;">Branding</div>
+        <div style="font: 600 1.75rem/1.15 'Space Grotesk', sans-serif; color: #3a251c; margin-top: 0.5rem; max-width: 16ch;">Studio Norrland Identity</div>
+        <div style="position: absolute; left: 2.5rem; right: 2.5rem; bottom: -2.5rem; height: 180px; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px -12px rgba(28,26,23,0.25); background: repeating-linear-gradient(135deg, #f7f2ea, #f7f2ea 10px, #ecdfcb 10px, #ecdfcb 20px); display: flex; align-items: center; justify-content: center;">
+          <span style="font: 500 0.75rem ui-monospace, monospace; color: #8a8378; text-transform: uppercase; letter-spacing: 0.05em;">project mockup</span>
+        </div>
+      </div>
+
+      <div style="background: #b7c8dd; border-radius: 40px; padding: 3rem; position: relative; overflow: visible; height: 380px;">
+        <div style="font: 500 0.75rem 'Inter', sans-serif; text-transform: uppercase; letter-spacing: 0.05em; color: #38455c;">Product Design</div>
+        <div style="font: 600 1.75rem/1.15 'Space Grotesk', sans-serif; color: #1c2a3a; margin-top: 0.5rem; max-width: 16ch;">Fjord Banking App</div>
+        <div style="position: absolute; left: 3rem; right: 3rem; bottom: -3.5rem; height: 220px; border-radius: 24px; overflow: hidden; box-shadow: 0 24px 48px -12px rgba(28,26,23,0.25); background: repeating-linear-gradient(135deg, #f7f2ea, #f7f2ea 10px, #d9e2ec 10px, #d9e2ec 20px); display: flex; align-items: center; justify-content: center;">
+          <span style="font: 500 0.75rem ui-monospace, monospace; color: #8a8378; text-transform: uppercase; letter-spacing: 0.05em;">screenshot</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+</x-dc>
+</body>
+</html>
