@@ -1,41 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link 
-    rel="stylesheet" href="style.css">
-    <link
-    rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <title>Work</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet">
+  <title>Work</title>
 </head>
+
 <body>
   <header id="header-box">
     <nav id="main-nav">
-      <a href="work.html" class="btn">Work</a>
-      <a href="about.html" class="btn">About</a>
-      <a href="play.html" class="btn">Play</a>
+      <div class="navBg">
+        <a href="work.html" class="btn">Work</a>
+        <a href="about.html" class="btn">About</a>
+        <a href="play.html" class="btn">Play</a>
+      </div>
     </nav>
   </header>
-<script src="nav.js"></script>
+  <script src="nav.js"></script>
 
-<div id="title-box">
-  TITLE
-</div>
+  <div id="title-box">
+    <h1>
+      Hi. I'm Bastian.
+    </h1>
+    <h1>
+      A Computer Scientist.
+    </h1>
+  </div>
+  <!-- onclick="location.href='ColorPicker/Color-Composer.html';" style="cursor: pointer;" -->
+  <div id="Projects-Container">
+    <div class="Project-Line">
+      <div class="Projects-Div btn" id="Project-One">
+        Click me!</div>
+      <div class="Projects-Div btn" id="Project-Two">
+        2</div>
+    </div>
+    <div class="Project-Line">
+      <div class="Projects-Div btn" id="Project-Three">
+        3</div>
+      <div class="Projects-Div btn" id=Project-Four>
+        4</div>
+    </div>
+  </div>
+  <script src="foldingProjects.js"></script>
+  <footer id="Footer-Container">
+    FOOTER
+  </footer>
 
-<div id="Projects-Container">
-  <div class="Projects-Div Project-One">1</div>
-  <div class="Projects-Div Project-Two">2</div>
-  <div class="Projects-Div Project-Three">3</div>
-  <div class="Projects-Div Project-Four">4</div>
-</div>
-
-<footer id="Footer-Container">
-  FOOTER
-</footer>
-
-
-
-<script src="script.js"></script>
 </body>
+
 </html>
