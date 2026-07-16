@@ -84,7 +84,7 @@ header {
 /* NavBar-Buttons */
 #main-nav .btn {
   display: inline-block;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   padding: 1rem 2rem;
   margin: 0.25rem;
@@ -197,7 +197,8 @@ header {
 
 #Footer-Container {
   grid-area: footer;
-  background-color: beige;
+  background-color: transparent;
   margin-top: 5rem;
   height: 10rem;
+  border-top:1px solid var(--color-text-muted);
 }
