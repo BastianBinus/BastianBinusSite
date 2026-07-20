@@ -12,6 +12,7 @@ allButtons.forEach(PrBtn => {
 })
     if (!conAc){
       this.classList.add('active');
+      if (this.querySelector('img')) return;
       let img = this.querySelector('img');
       img.src = img.src.replace('Small', 'Big');
     } else {
