@@ -41,6 +41,10 @@ html {
     display: none;
 }
 
+img {
+  width: 100%;
+  height: auto;
+}
 
 /* ==========================================================================background-color: var(--color-bg);
    2. PAGE LAYOUT (Grid für body: header / title / main / footer)
@@ -176,10 +180,6 @@ header {
   box-shadow: 0px 0px 8px 10px rgb(126, 135, 138);
 }
 
-.Projects-Div > iframe {
-  
-}
-
 /* Einzelne Projekt-Kacheln – aktiver Zustand */
 .Projects-Div.active {
   flex-grow: 3;
@@ -199,8 +199,9 @@ header {
 
 #Project-One-Mockup {
   view-transition-name: colorCompMockup;
-  height:40rem;
-  aspect-ratio: 1.5/1.1;
+  flex-basis: 0;
+  flex-grow: 2;
+  min-width: auto;
 }
 
 .projectDesc {
@@ -209,12 +210,14 @@ header {
   transition: opacity 0.3s ease, visibility 0.3s ease;
   margin: 1rem;
   margin-right: 2rem;
+  flex-grow: 1;
 }
 
 .Projects-Div.active .projectDesc {
   opacity: 1;
   visibility: visible;
   transition-delay: 0.1s;
+  flex-grow: 1;
 }
 
 .controls,
@@ -255,7 +258,6 @@ header {
 
 /* ==========================================================================
    6. @-Commands
-}
    ========================================================================== */
 @view-transition {
   navigation: auto;
