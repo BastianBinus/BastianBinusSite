@@ -208,7 +208,7 @@ header {
 }
 
 .Projects-Div.active .projectDesc {
-  display: block;
+  animation: showAfterDelay 0s 0.5s forwards;
 }
 
 .controls,
@@ -266,3 +266,7 @@ header {
   to { transform: scale(1); 
     opacity: 1;}
 } 
+
+@keyframes showAfterDelay {
+    to { display: block; }
+}
