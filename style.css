@@ -194,6 +194,26 @@ header {
   display:flex;
   justify-items: center;
   align-items: center;
+  object-fit: fill;
+}
+
+#Project-One-Mockup {
+  view-transition-name: colorCompMockup;
+  height:40rem;
+  aspect-ratio: 1.5/1.1;
+}
+
+.projectDesc {
+  display: none;
+}
+
+.Projects-Div.active .projectDesc {
+  display: block;
+}
+
+.controls,
+.rightside {
+    min-width: 0;
 }
 
 #Project-Two {
