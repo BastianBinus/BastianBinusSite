@@ -204,11 +204,17 @@ header {
 }
 
 .projectDesc {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  margin: 1rem;
+  margin-right: 2rem;
 }
 
 .Projects-Div.active .projectDesc {
-  animation: showAfterDelay 0s 0.5s forwards;
+  opacity: 1;
+  visibility: visible;
+  transition-delay: 0.1s;
 }
 
 .controls,
@@ -267,6 +273,3 @@ header {
     opacity: 1;}
 } 
 
-@keyframes showAfterDelay {
-    to { display: block; }
-}
