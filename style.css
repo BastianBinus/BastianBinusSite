@@ -140,13 +140,19 @@ header {
 }
 
 #title-box > h1 {
+  display: block;
   font-size: 7rem;
+  margin: 0.1rem;
+}
+
+#sm-body {
+  font-size: 5rem;
 }
 
 #sm-caret {
   display: inline-block;
-  width: .6ch;
-  height: 1em;
+  width: .4ch;
+  height: 5rem;
   background: var(--color-text-dark);
   vertical-align: -.1em;
   margin-left: 2px;
