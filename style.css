@@ -3,13 +3,12 @@
    ========================================================================== */
 :root {
   /* Basis */
-  --color-bg: #f4ede1; 
+  --color-bg: #f4ede1;
   --color-nav-bg: #ece3d3;
   --color-text-dark: #1c1a17;
   --color-text-light: #f7f2ea;
   --color-text-muted: #8a8378;
   --color-text-body: #3a352e;
- 
 
   /* Akzentfarben */
   --color-tile-terracotta: #e8b8a0;
@@ -31,14 +30,12 @@
   --radius-pill: 9999px;
 }
 
-
 html {
   font-size: 16px;
-  
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 img {
@@ -46,9 +43,7 @@ img {
   height: auto;
 }
 
-
-
-/* ==========================================================================background-color: var(--color-bg);
+/* ==========================================================================
    2. PAGE LAYOUT (Grid für body: header / title / main / footer)
    ========================================================================== */
 
@@ -56,7 +51,6 @@ body {
   font-family: var(--font-body);
   text-align: center;
   display: grid;
-  
   margin: 0;
   padding: 0;
   grid-template-columns: 1fr 1fr 1fr;
@@ -66,10 +60,8 @@ body {
     'title  title  title'
     'main   main   main'
     'footer footer footer';
-    background:linear-gradient(135deg, var(--color-bg), rgb(190, 224, 235) )
-
+  background: linear-gradient(135deg, var(--color-bg), rgb(190, 224, 235));
 }
-
 
 /* ==========================================================================
    3. HEADER / NAVBAR
@@ -84,7 +76,7 @@ header {
 #header-box {
   grid-area: header;
   z-index: 9999 !important;
-  position:fixed;
+  position: fixed;
   justify-self: center;
 }
 
@@ -114,12 +106,12 @@ header {
 
 #main-nav .btn:hover {
   background-color: var(--color-text-body);
-  color: var(--color-text-light)
+  color: var(--color-text-light);
 }
 
 #main-nav > div > a.active {
   background-color: var(--color-text-dark);
-  color: var(--color-text-light); 
+  color: var(--color-text-light);
 }
 
 #main-nav .btn:active {
@@ -137,11 +129,11 @@ header {
   font-family: var(--font-heading);
   font-weight: bold;
   min-height: calc(100vh - 4.25rem);
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  animation:titleAnim;
+  animation: titleAnim;
   animation-timeline: scroll(root block);
   animation-range: 0 calc(100vh - 4.25rem);
   margin: 1rem;
@@ -152,9 +144,9 @@ header {
 }
 
 #sm-caret {
-  display: inline-block; 
-  width: .6ch; 
-  height:1em;
+  display: inline-block;
+  width: .6ch;
+  height: 1em;
   background: var(--color-text-dark);
   vertical-align: -.1em;
   margin-left: 2px;
@@ -167,7 +159,7 @@ header {
 
 /* Äußerer Container – noch als Grid gestylt (main-Bereich des body-Grids) */
 #Projects-Container {
-  display:flex;
+  display: flex;
   flex-direction: column;
   grid-area: main;
   margin: 1rem 15%;
@@ -177,12 +169,12 @@ header {
   animation: fadeIn 1000ms;
 }
 
-/* Reihen-Wrapper (neu, für Flexbox-Umstellung) */
+/* Reihen-Wrapper */
 .Project-Line {
   display: flex;
   column-gap: 50px;
   height: 40rem;
-  animation:projectAnim;
+  animation: projectAnim;
   animation-timeline: view();
   animation-range: entry 0% exit 100%;
 }
@@ -200,13 +192,12 @@ header {
   flex-grow: 3;
 }
 
-
 /* Individuelle Kacheln – aktuell noch per grid-area positioniert */
 #Project-One {
-  background:linear-gradient(135deg, var(--color-tile-terracotta), #c9bbb4);
-    color: var(--color-tile-terracotta-text);
+  background: linear-gradient(135deg, var(--color-tile-terracotta), #c9bbb4);
+  color: var(--color-tile-terracotta-text);
   height: auto;
-  display:flex;
+  display: flex;
   justify-items: center;
   align-items: center;
   object-fit: fill;
@@ -222,7 +213,7 @@ header {
 .projectDesc {
   opacity: 0;
   visibility: hidden;
-  /*transition: opacity 0.5s ease, visibility 0.5s ease, flex-grow 0.5s ease, flex-basis 0.5s ease;*/
+  /* transition: opacity 0.5s ease, visibility 0.5s ease, flex-grow 0.5s ease, flex-basis 0.5s ease; */
   margin: 1rem;
   margin-right: 2rem;
   flex-grow: 0;
@@ -235,11 +226,6 @@ header {
   flex-basis: 0;
   flex-grow: 1;
   min-width: 0;
-}
-
-.controls,
-.rightside {
-    min-width: 0;
 }
 
 #Project-Two {
@@ -260,7 +246,6 @@ header {
   height: auto;
 }
 
-
 /* ==========================================================================
    6. FOOTER
    ========================================================================== */
@@ -270,35 +255,32 @@ header {
   background-color: transparent;
   margin-top: 5rem;
   height: 10rem;
-  border-top:1px solid var(--color-text-muted);
+  border-top: 1px solid var(--color-text-muted);
 }
 
 /* ==========================================================================
-   6. @-Commands
+   7. @-Commands / Animationen
    ========================================================================== */
+
 @view-transition {
   navigation: auto;
 }
 
 @keyframes titleAnim {
-  from { transform: scale(2);}
+  from { transform: scale(2); }
   to { transform: scale(0.5); }
-} 
+}
 
 @keyframes projectAnim {
-  0% { transform: scale(0.3); 
-    opacity: 0;}
-  50% { transform: scale(1); 
-    opacity: 1;}
-  100% { transform: scale(0.6); 
-    opacity: 0.3;}
-} 
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0.6); opacity: 0.3; }
+}
 
 @keyframes blink {
   50% { opacity: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #sm-caret { animation: none; 
-  }
+  #sm-caret { animation: none; }
 }
