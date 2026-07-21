@@ -46,6 +46,8 @@ img {
   height: auto;
 }
 
+
+
 /* ==========================================================================background-color: var(--color-bg);
    2. PAGE LAYOUT (Grid für body: header / title / main / footer)
    ========================================================================== */
@@ -81,6 +83,9 @@ header {
 
 #header-box {
   grid-area: header;
+  z-index: 9999 !important;
+  position:fixed;
+  justify-self: center;
 }
 
 /* NavBar-Buttons */
@@ -146,6 +151,15 @@ header {
   font-size: 7rem;
 }
 
+#sm-caret {
+  display: inline-block; 
+  width: .6ch; 
+  height:1em;
+  background: var(--color-text-dark);
+  vertical-align: -.1em;
+  margin-left: 2px;
+  animation: blink 1s steps(1) infinite;
+}
 
 /* ==========================================================================
    5. PROJECTS SECTION
@@ -279,3 +293,12 @@ header {
   100% { transform: scale(0.6); 
     opacity: 0.3;}
 } 
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #sm-caret { animation: none; 
+  }
+}
