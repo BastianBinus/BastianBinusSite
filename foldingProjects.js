@@ -5,14 +5,14 @@ allButtons.forEach(PrBtn => {
     let conAc = this.classList.contains('active')
     
   allButtons.forEach(btn => {
-  if (!btn.querySelector('img')) return;
-  const img = btn.querySelector('img');
-  img.src = img.src.replace('Big', 'Small');
-  btn.classList.remove('active');
+    btn.classList.remove('active');
+    if (!btn.querySelector('img')) return;
+    const img = btn.querySelector('img');
+    img.src = img.src.replace('Big', 'Small');
 })
     if (!conAc){
       this.classList.add('active');
-      if (this.querySelector('img')) return;
+      if (!this.querySelector('img')) return;
       let img = this.querySelector('img');
       img.src = img.src.replace('Small', 'Big');
     } else {
