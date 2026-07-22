@@ -163,7 +163,6 @@ header {
    5. PROJECTS SECTION
    ========================================================================== */
 
-/* Äußerer Container – noch als Grid gestylt (main-Bereich des body-Grids) */
 #Projects-Container {
   display: flex;
   flex-direction: column;
@@ -175,7 +174,6 @@ header {
   animation: fadeIn 1000ms;
 }
 
-/* Reihen-Wrapper */
 .Project-Line {
   display: flex;
   column-gap: 50px;
@@ -187,13 +185,12 @@ header {
 
 .Projects-Div {
   flex-basis: 0%;
-  transition: all 0.5s;
+  transition: flex-grow 0.5s ease, flex-basis 0.5s ease;
   flex-grow: 1;
   border-radius: 50px;
   box-shadow: 0px 0px 8px 10px rgb(126, 135, 138);
 }
 
-/* Einzelne Projekt-Kacheln – aktiver Zustand */
 .Projects-Div.active {
   flex-grow: 3;
 }
@@ -208,6 +205,28 @@ header {
   align-items: center;
   object-fit: fill;
 }
+
+#Project-One a{
+  display: inline-block;
+  border: 1px solid transparent;
+  outline: none;
+  padding: 1rem 2rem;
+  margin: 0.25rem;
+  height: auto;
+  background-color: var(--color-text-dark);
+  color: var(--color-text-light);
+  text-decoration: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+}
+
+#project-One a:active {
+  background-color: var(--color-nav-bg);
+  color: var(--color-text-dark);
+  border: 1px solid var(--color-text-dark);
+}
+
 
 #Project-One-Mockup {
   transition: all 0.5s;
@@ -261,7 +280,14 @@ header {
   background-color: transparent;
   margin-top: 5rem;
   height: 10rem;
-  border-top: 1px solid var(--color-text-muted);
+  text-align: left;
+  box-shadow: 0px 0px 20px 4px rgb(126, 135, 138);
+  display:block
+}
+
+.Contact > * {
+  margin-left: 10vw;
+  display:inline-block;
 }
 
 /* ==========================================================================
