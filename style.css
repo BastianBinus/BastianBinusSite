@@ -430,19 +430,9 @@ header {
   }
 }
 
-@keyframes titleAnimMobile {
-  from {
-    transform: scale(1.2);
-  }
-
-  to {
-    transform: scale(0.7);
-  }
-}
-
 @media (width <= 768px) {
   #title-box {
-    animation-name: titleAnimMobile;
+    animation: none;
   }
 }
 
@@ -499,6 +489,9 @@ header {
   .Projects-Div .projectDesc {
     opacity: 1;
     visibility: visible;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
   }
 
   #About-Container {
