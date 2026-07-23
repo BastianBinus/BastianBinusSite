@@ -137,7 +137,8 @@ header {
   animation: titleAnim;
   animation-timeline: scroll(root block);
   animation-range: 0 calc(100vh - 4.25rem);
-  margin: 1rem;
+  margin: 1rem auto;
+  justify-self: center;
   color: var(--color-primary);
 }
 
@@ -429,6 +430,12 @@ header {
   }
 }
 
+@media (width <= 768px) {
+  #title-box {
+    animation: none;
+  }
+}
+
 @keyframes projectAnim {
   0% {
     transform: scale(0.3);
@@ -482,6 +489,9 @@ header {
   .Projects-Div .projectDesc {
     opacity: 1;
     visibility: visible;
+    flex-grow: 1;
+    flex-basis: 0;
+    min-width: 0;
   }
 
   #About-Container {
