@@ -155,7 +155,7 @@ header {
   display: inline-block;
   width: 0.4ch;
   height: 5rem;
-  background: var(--color-text-dark);
+  background: var(--color-primary);
   vertical-align: -0.1em;
   margin-left: 2px;
   animation: blink 1s steps(1) infinite;
@@ -201,7 +201,7 @@ header {
 /* Individuelle Kacheln – aktuell noch per grid-area positioniert */
 #Project-One {
   background-color: var(--color-tile-red);
-  color: var(--color-tile-terracotta-text);
+  color: var(--color-secondary);
   height: auto;
   display: flex;
   place-items: center center;
@@ -215,12 +215,12 @@ header {
   padding: 1rem 2rem;
   margin: 0.25rem;
   height: auto;
-  background-color: var(--color-text-dark);
-  color: var(--color-text-light);
+  color: var(--color-secondary);
   text-decoration: none;
   font-size: 1.25rem;
   cursor: pointer;
   border-radius: var(--radius-pill);
+  background-color: rgb(30 33 48 / 100%);
 }
 
 #project-One a:active {
@@ -389,7 +389,7 @@ header {
   margin-top: 5rem;
   height: 10rem;
   text-align: left;
-  box-shadow: 0 0 20px 4px rgb(126 135 138);
+  box-shadow: 0 0 20px 4px rgb(30 33 48 / 50%);
   display: block;
   color: var(--color-secondary)
 }
