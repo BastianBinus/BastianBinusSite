@@ -1,20 +1,24 @@
+
 /* ==========================================================================
    1. GLOBAL / RESET
    ========================================================================== */
 :root {
   /* Basis */
-  --color-bg: #f4ede1;
+  --color-primary: #fda5b1;
+  --color-secondary: #b3989c;
+  --color-nav: #1e2130;
+  --color-bg: #12151c;
   --color-nav-bg: #ece3d3;
   --color-text-dark: #1c1a17;
   --color-text-light: #f7f2ea;
-  --color-text-muted: #8a8378;
+  --color-text-muted: #7c6177;
   --color-text-body: #3a352e;
 
   /* Akzentfarben */
-  --color-tile-terracotta: #e8b8a0;
-  --color-tile-sage: #b9cdb0;
-  --color-tile-sky: #b7c8dd;
-  --color-tile-lavender: #d6bfe0;
+  --color-tile-red: #5c232b;
+  --color-tile-brown: #422006;
+  --color-tile-blue: #164058;
+  --color-tile-violet: #3d2650;
 
   /* Label-Farben pro Kachel */
   --color-tile-terracotta-text: #6b4a3a;
@@ -23,8 +27,8 @@
   --color-tile-lavender-text: #563a5c;
 
   /* Fonts */
-  --font-body: 'Inter', sans-serif;
-  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-heading: "Space Grotesk", sans-serif;
 
   /* Radius */
   --radius-pill: 9999px;
@@ -53,14 +57,10 @@ body {
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto auto 1fr auto;
-  grid-template-areas:
-    'header header header'
-    'title  title  title'
-    'main   main   main'
-    'footer footer footer';
-  background: linear-gradient(135deg, var(--color-bg), rgb(190, 224, 235));
+  grid-template: "header header header" auto "title  title  title" auto "main   main   main" 1fr "footer footer footer" auto / 1fr 1fr 1fr;
+  background-color: var(--color-bg);
+
+  /* background: linear-gradient(135deg, var(--color-bg), rgb(190, 224, 235)); */
 }
 
 /* ==========================================================================
@@ -89,15 +89,16 @@ header {
   margin: 0.25rem;
   height: auto;
   background-color: transparent;
-  color: var(--color-text-dark);
+  color: var(--color-text-muted);
   text-decoration: none;
   font-size: 1.25rem;
   cursor: pointer;
   border-radius: var(--radius-pill);
 }
 
-.navBg {
-  background-color: var(--color-nav-bg);
+.nav-bg,
+[class~="Nav-Bg"] {
+  background-color: rgb(30 33 48 / 50%);
   width: fit-content;
   justify-self: center;
   padding: 1px;
@@ -106,12 +107,12 @@ header {
 
 #main-nav .btn:hover {
   background-color: var(--color-text-body);
-  color: var(--color-text-light);
+  color: var(--color-primary);
 }
 
 #main-nav > div > a.active {
   background-color: var(--color-text-dark);
-  color: var(--color-text-light);
+  color: var(--color-text-muted);
 }
 
 #main-nav .btn:active {
@@ -137,6 +138,7 @@ header {
   animation-timeline: scroll(root block);
   animation-range: 0 calc(100vh - 4.25rem);
   margin: 1rem;
+  color: var(--color-primary);
 }
 
 #title-box > h1 {
@@ -151,10 +153,10 @@ header {
 
 #sm-caret {
   display: inline-block;
-  width: .4ch;
+  width: 0.4ch;
   height: 5rem;
   background: var(--color-text-dark);
-  vertical-align: -.1em;
+  vertical-align: -0.1em;
   margin-left: 2px;
   animation: blink 1s steps(1) infinite;
 }
@@ -185,10 +187,11 @@ header {
 
 .Projects-Div {
   flex-basis: 0%;
-  transition: flex-grow 0.5s ease, flex-basis 0.5s ease;
+  transition:
+    flex-grow 0.5s ease,
+    flex-basis 0.5s ease;
   flex-grow: 1;
   border-radius: 50px;
-  box-shadow: 0px 0px 8px 10px rgb(126, 135, 138);
 }
 
 .Projects-Div.active {
@@ -197,16 +200,15 @@ header {
 
 /* Individuelle Kacheln – aktuell noch per grid-area positioniert */
 #Project-One {
-  background: linear-gradient(135deg, var(--color-tile-terracotta), #c9bbb4);
+  background-color: var(--color-tile-red);
   color: var(--color-tile-terracotta-text);
   height: auto;
   display: flex;
-  justify-items: center;
-  align-items: center;
+  place-items: center center;
   object-fit: fill;
 }
 
-#Project-One a{
+#Project-One a {
   display: inline-block;
   border: 1px solid transparent;
   outline: none;
@@ -223,10 +225,9 @@ header {
 
 #project-One a:active {
   background-color: var(--color-nav-bg);
-  color: var(--color-text-dark);
+  color: var(--color-bg);
   border: 1px solid var(--color-text-dark);
 }
-
 
 #Project-One-Mockup {
   transition: all 0.5s;
@@ -238,6 +239,7 @@ header {
 .projectDesc {
   opacity: 0;
   visibility: hidden;
+
   /* transition: opacity 0.5s ease, visibility 0.5s ease, flex-grow 0.5s ease, flex-basis 0.5s ease; */
   margin: 1rem;
   margin-right: 2rem;
@@ -254,25 +256,131 @@ header {
 }
 
 #Project-Two {
-  background-color: var(--color-tile-sage);
+  background-color: var(--color-tile-blue);
   color: var(--color-tile-sage-text);
   height: auto;
 }
 
 #Project-Three {
-  background-color: var(--color-tile-sky);
+  background-color: var(--color-tile-brown);
   color: var(--color-tile-sky-text);
   height: auto;
 }
 
 #Project-Four {
-  background-color: var(--color-tile-lavender);
+  background-color: var(--color-tile-violet);
   color: var(--color-tile-lavender-text);
   height: auto;
 }
 
 /* ==========================================================================
-   6. FOOTER
+   6. ABOUT MAIN SECTION
+   ========================================================================== */
+
+#About-Container {
+  grid-area: main;
+  margin: 1rem 15%;
+  width: 70%;
+  height: auto;
+  row-gap: 100px;
+  animation: fadeIn 1000ms;
+  color: var(--color-secondary)
+}
+
+#Intro-Box p {
+  font-family: var(--font-body);
+  font-size: 1.8rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  max-width: 60ch;
+  margin: 0 auto;
+}
+
+#Skills-Box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+#Skills-Box p {
+  font-family: var(--font-heading);
+  font-weight: bold;
+  font-size: 1.5rem;
+  margin-top: 5vh;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-pill);
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+#TimeLineContainerAll {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 1.5rem;
+  width: 100%;
+  margin-bottom: 5rem;
+}
+
+#About-Container p.title {
+  font-family: var(--font-heading);
+  font-weight: bold;
+  font-size: 3rem;
+  margin: 15vh;
+  margin-bottom: 5vh;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius-pill);
+  color: var(--color-primary);
+}
+
+.TimeLineContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  font-family: var(--font-heading);
+  font-weight: bold;
+  padding: 1rem;
+  background: var(--color-primary);
+  color: var(--color-bg);
+}
+
+.TimeLineContainer p {
+  margin: 0;
+}
+
+.TimeLineContainer > div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.TimeLineContainer:nth-child(1) {
+  width: 15vw;
+  margin-left: 0;
+}
+
+.TimeLineContainer:nth-child(2) {
+  width: 15vw;
+  margin-left: 15vw;
+}
+
+.TimeLineContainer:nth-child(3) {
+  width: 15vw;
+  margin-left: 30vw;
+}
+
+.TimeLineContainer:nth-child(4) {
+  width: 15vw;
+  margin-left: 45vw;
+}
+
+
+
+
+/* ==========================================================================
+   7. FOOTER
    ========================================================================== */
 
 #Footer-Container {
@@ -281,17 +389,34 @@ header {
   margin-top: 5rem;
   height: 10rem;
   text-align: left;
-  box-shadow: 0px 0px 20px 4px rgb(126, 135, 138);
-  display:block
+  box-shadow: 0 0 20px 4px rgb(126 135 138);
+  display: block;
+  color: var(--color-secondary)
 }
 
-.Contact > * {
-  margin-left: 10vw;
-  display:inline-block !important;
+
+#Footer-Container a {
+  display: inline-block;
+  border: 1px solid transparent;
+  outline: none;
+  padding: 1rem 2rem;
+  margin: 0.25rem;
+  height: auto;
+  color: var(--color-text-muted);
+  text-decoration: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  border-radius: var(--radius-pill);
+  background-color: rgb(30 33 48 / 50%);
+}
+
+.Contact * {
+  margin-left: 10vw !important;
+  display: inline-block !important;
 }
 
 /* ==========================================================================
-   7. @-Commands / Animationen
+7. @-Commands / Animationen
    ========================================================================== */
 
 @view-transition {
@@ -299,20 +424,40 @@ header {
 }
 
 @keyframes titleAnim {
-  from { transform: scale(2); }
-  to { transform: scale(0.5); }
+  from {
+    transform: scale(2);
+  }
+
+  to {
+    transform: scale(0.5);
+  }
 }
 
 @keyframes projectAnim {
-  0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(0.6); opacity: 0.3; }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(0.6);
+    opacity: 0.3;
+  }
 }
 
 @keyframes blink {
-  50% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  #sm-caret { animation: none; }
+  #sm-caret {
+    animation: none;
+  }
 }

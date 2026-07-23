@@ -1,0 +1,27 @@
+{
+  "name": "portfoliowebsite",
+  "version": "1.0.0",
+  "description": "",
+  "main": "foldingProjects.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BastianBinus/BastianBinusSite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/BastianBinus/BastianBinusSite/issues"
+  },
+  "homepage": "https://github.com/BastianBinus/BastianBinusSite#readme",
+  "devDependencies": {
+    "prettier": "^3.9.6",
+    "stylelint": "^17.14.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}
