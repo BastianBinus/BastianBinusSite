@@ -137,7 +137,8 @@ header {
   animation: titleAnim;
   animation-timeline: scroll(root block);
   animation-range: 0 calc(100vh - 4.25rem);
-  margin: 1rem;
+  margin: 1rem auto;
+  justify-self: center;
   color: var(--color-primary);
 }
 
@@ -426,6 +427,22 @@ header {
 
   to {
     transform: scale(0.5);
+  }
+}
+
+@keyframes titleAnimMobile {
+  from {
+    transform: scale(1.2);
+  }
+
+  to {
+    transform: scale(0.7);
+  }
+}
+
+@media (width <= 768px) {
+  #title-box {
+    animation-name: titleAnimMobile;
   }
 }
 
