@@ -1,4 +1,3 @@
-
 /* ==========================================================================
    1. GLOBAL / RESET
    ========================================================================== */
@@ -57,7 +56,7 @@ body {
   display: grid;
   margin: 0;
   padding: 0;
-  grid-template: "header header header" auto "title  title  title" auto "main   main   main" 1fr "footer footer footer" auto / 1fr 1fr 1fr;
+  grid-template: "header" auto "title" auto "main" 1fr "footer" auto / 1fr;
   background-color: var(--color-bg);
 
   /* background: linear-gradient(135deg, var(--color-bg), rgb(190, 224, 235)); */
@@ -130,6 +129,7 @@ header {
   font-family: var(--font-heading);
   font-weight: bold;
   min-height: calc(100vh - 4.25rem);
+  width: clamp(360px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -284,7 +284,7 @@ header {
   height: auto;
   row-gap: 100px;
   animation: fadeIn 1000ms;
-  color: var(--color-secondary)
+  color: var(--color-secondary);
 }
 
 #Intro-Box p {
@@ -376,9 +376,6 @@ header {
   margin-left: 45vw;
 }
 
-
-
-
 /* ==========================================================================
    7. FOOTER
    ========================================================================== */
@@ -391,9 +388,8 @@ header {
   text-align: left;
   box-shadow: 0 0 20px 4px rgb(30 33 48 / 50%);
   display: block;
-  color: var(--color-secondary)
+  color: var(--color-secondary);
 }
-
 
 #Footer-Container a {
   display: inline-block;
@@ -459,5 +455,32 @@ header {
 @media (prefers-reduced-motion: reduce) {
   #sm-caret {
     animation: none;
+  }
+}
+
+@media (width <= 1024px) {
+  #Projects-Container {
+    margin: 1rem 5%;
+    width: 90%;
+  }
+
+  #Projects-Container img {
+    display: none;
+  }
+
+  .Project-Line {
+    flex-direction: column;
+    height: auto;
+    row-gap: 50px;
+  }
+
+  .Projects-Div {
+    flex-basis: 0%;
+    flex-grow: 3;
+  }
+
+  .Projects-Div .projectDesc {
+    opacity: 1;
+    visibility: visible;
   }
 }
