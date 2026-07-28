@@ -267,7 +267,10 @@ header {
   line-height: 1.5;
   opacity: 0.85;
   margin: 1.5rem 1.5rem 0.5rem;
-  transition: font-size 0.35s ease, opacity 0.35s ease, color 0.35s ease;
+  transition:
+    font-size 0.35s ease,
+    opacity 0.35s ease,
+    color 0.35s ease;
 }
 
 .Projects-Div#Project-Two.active .projectPreview {
