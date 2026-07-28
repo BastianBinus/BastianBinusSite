@@ -1,0 +1,102 @@
+<!-- src/layout.ejs -->
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Static Site Generator
+    </title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>
+            Static Site Generator
+        </h1>
+        <p>
+            A simple static site generator built with Node.js
+            <br>
+            <bold>This was built with the generator</bold>
+        </p>
+    </header>
+    <nav>
+        <a href="../index.html">Zurück</a>
+        <a href="./index.html">Home</a>
+        <a href="./process.html">Prozess</a>
+    </nav>
+    <h1>Static Site Generator</h1>
+    <p>Das ist ein ganz einfacher, selbstgebauter Static Site Generator mit Node.js.
+        Er nimmt Markdown- und EJS-Dateien aus <code>src/pages</code>, packt sie in ein Layout
+        und schreibt am Ende fertige HTML-Seiten nach <code>public/</code>.</p>
+    <h2>Wie funktioniert&#39;s?</h2>
+    <ol>
+        <li><code>scripts/build.js</code> durchsucht <code>src/pages</code> nach <code>.md</code>, <code>.ejs</code> und
+            <code>.html</code> Dateien.
+        </li>
+        <li>Jede Datei kann oben ein <strong>Front Matter</strong> haben (<code>title</code>, <code>layout</code>, ...).
+        </li>
+        <li>Markdown wird mit <code>marked</code> zu HTML gerendert, <code>.ejs</code> direkt mit EJS ausgeführt.</li>
+        <li>Der fertige Inhalt wird in ein Layout aus <code>src/layouts</code> eingesetzt (Header + Nav via Partials).
+        </li>
+        <li>Raus kommt eine fertige <code>.html</code> Datei in <code>public/</code>.</li>
+    </ol>
+    <h2>Tech-Stack</h2>
+    <ul>
+        <li><strong>ejs</strong> – Templating für Layouts und Partials</li>
+        <li><strong>marked</strong> – Markdown zu HTML</li>
+        <li><strong>front-matter</strong> – Metadaten (Titel, Layout, ...) am Dateianfang</li>
+        <li><strong>fs-extra</strong> &amp; <strong>glob</strong> – Dateien finden, kopieren, schreiben</li>
+    </ul>
+    <h2>Scripts</h2>
+    <ul>
+        <li><code>npm run build</code> – baut die Seite einmalig nach <code>public/</code></li>
+        <li><code>npm run watch:build</code> – baut automatisch neu bei Änderungen</li>
+        <li><code>npm run watch:serve</code> – startet einen lokalen Server für <code>public/</code></li>
+        <li><code>npm run dev</code> – beides gleichzeitig</li>
+    </ul>
+    <h2>Projekt Tree</h2>
+    <pre><code>root/
+|-- package.json
+|-- site.config.js
+|-- public/
+|   |-- index.html
+|   |-- assets/
+|-- scripts/
+|   |-- build.js
+|-- src/
+|   |-- assets/
+|   |-- data/
+|   |   |-- config/
+|   |       |-- projects.js
+|   |-- layouts/
+|   |   |-- default.ejs
+|   |   |-- minimal.ejs
+|   |-- pages/
+|   |   |-- index.md
+|   |-- partials/
+|       |-- header.ejs
+</code></pre>
+    <h2>Filearten</h2>
+    <p>Das ist eine <strong>Beispielseite</strong> für den Markdown Seiten Generator mit <code>marked</code> und Front
+        Matter.</p>
+    <p>Das erstellen von Seiten funktinoiert mit:</p>
+    <ul>
+        <li><strong>Markdown</strong></li>
+        <li><strong>Embedded JavaScript</strong></li>
+        <li><strong>HTML</strong></li>
+    </ul>
+    <h2>Feste Web-Assets</h2>
+    <p>Feste Dateien wie JavaScript oder CSS wird in Assets abgelegt und bei der generierung direkt weitergeleitet</p>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+
+</html>

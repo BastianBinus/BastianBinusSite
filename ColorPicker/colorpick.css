@@ -10,11 +10,7 @@
   background-color: white;
   box-shadow: 10px 10px 10px 10px rgb(0 0 0 / 10%);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "title   title"
-    "controls rightside";
-  grid-template-rows: auto 1fr;
+  grid-template: "title   title" auto "controls rightside" 1fr / 1fr 1fr;
   gap: clamp(12px, 3vw, 24px);
   border-radius: 20px;
   max-width: 700px;

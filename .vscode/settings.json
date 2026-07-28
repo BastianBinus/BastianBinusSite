@@ -3,5 +3,8 @@
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.stylelint": "explicit"
+  },
+  "chat.tools.terminal.autoApprove": {
+    "npx stylelint": true
   }
 }

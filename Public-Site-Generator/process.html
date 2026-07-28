@@ -1,0 +1,309 @@
+<!-- src/layout.ejs -->
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <title>
+    Static Site Generator
+  </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+  <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+  <header>
+    <h1>
+      Static Site Generator
+    </h1>
+    <p>
+      A simple static site generator built with Node.js
+    </p>
+  </header>
+  <nav>
+    <a href="../index.html">Zurück</a>
+    <a href="./index.html">Home</a>
+    <a href="./process.html">Prozess</a>
+  </nav>
+  <h1>Das Skellet des Generators</h1>
+  <h2>Folder Struktur</h2>
+  <div class="spoiler">
+    <pre><code>
+mein-projekt/
+|-- package.json
+|-- site.config.js
+|-- public/
+|   |-- index.html
+|   |-- assets/
+|-- scripts/
+|   |-- build.js
+|-- src/
+|   |-- assets/
+|   |-- data/
+|   |   |-- config/
+|   |       |-- projects.js
+|   |-- layouts/
+|   |   |-- default.ejs
+|   |   |-- minimal.ejs
+|   |-- pages/
+|   |   |-- index.md
+|   |-- partials/
+|       |-- header.ejs
+</code></pre>
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')">Erklärung</button>
+    <div class="hidden">
+      <h3>public/</h3>
+      <p>Hier liegen dann die generierten HTML Seiten</p>
+      <h3>src/</h3>
+      <p>Hier liegen alle Ressourcen die gebraucht werden</p>
+      <h4>src/assets</h4>
+      <p>Hier liegen die festen Files wie <em>style.css</em></p>
+      <h4>src/data</h4>
+      <p>Hier liegt JSON Data</p>
+      <h4>src/pages</h4>
+      <p>Hier liegen dann die .md oder .ejs Files</p>
+      <h4>src/partials</h4>
+      <p>Hier liegen wiederverwendbare Teile wie Navigation</p>
+      <h3>site.config.js</h3>
+      <p>Hier liegen globale Einstellungen.</p>
+    </div>
+  </div>
+  <h2>package.json</h2>
+  <pre><code>
+{
+  "scripts": {
+    "build": "node ./scripts/build",
+    "serve": "serve ./public"
+  },
+  "dependencies": {
+    "ejs": "^6.0.1",
+    "front-matter": "^4.0.2",
+    "fs-extra": "^11.4.0",
+    "glob": "^13.0.6",
+    "marked": "^18.0.7",
+    "serve": "^14.2.6"
+  }
+}
+</code></pre>
+  <div class="spoiler">
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')">Erklärung</button>
+    <div class="hidden">
+      <p>Definiert die npm-Scripts (<code>build</code> baut die Seite, <code>serve</code> startet einen lokalen Server
+        für <code>public/</code>) und die Abhängigkeiten des Generators.</p>
+    </div>
+  </div>
+  <h2>site.config.js</h2>
+  <pre><code>
+const projects = require("./src/data/config/projects");
+
+module.exports = {
+  site: {
+    title: "Static Site Generator",
+    description: "A simple static site generator built with Node.js",
+    projects,
+  },
+};
+</code></pre>
+  <div class="spoiler">
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')">Erklärung</button>
+    <div class="hidden">
+      <p>Globale Konfiguration, die in jedem Template als <code>site</code> verfügbar ist. Zieht die Projektliste aus
+        <code>projects.js</code>.
+      </p>
+    </div>
+  </div>
+  <h2>src/data/config/projects.js</h2>
+  <pre><code>
+module.exports = [
+  { slug: "index", title: "Index" },
+  { slug: "process", title: "Prozess" },
+];
+</code></pre>
+  <div class="spoiler">
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')">Erklärung</button>
+    <div class="hidden">
+      <p>Liste der Nav-Einträge. Jeder Eintrag braucht <code>slug</code> (Dateiname ohne <code>.html</code>) und
+        <code>title</code> (Anzeigetext).
+      </p>
+    </div>
+  </div>
+  <h2>src/partials/header.ejs</h2>
+  <pre><code>
+&lt;header&gt;
+    &lt;h1&gt;
+        &lt;%= site.title %&gt;
+    &lt;/h1&gt;
+    &lt;p&gt;
+        &lt;%= site.description %&gt;
+    &lt;/p&gt;
+&lt;/header&gt;
+</code></pre>
+  <div class="spoiler">
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')">Erklärung</button>
+    <div class="hidden">
+      <p>Wiederverwendbarer Header-Block, wird in jedes Layout per <code>include()</code> eingebunden.</p>
+    </div>
+  </div>
+  <h2>src/layouts/default.ejs</h2>
+  <pre><code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;&lt;%= site.title %&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;%- include('partials/header.ejs') %&gt;
+    &lt;%- body %&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+  <div class="spoiler">
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')">Erklärung</button>
+    <div class="hidden">
+      <p>Das HTML-Gerüst jeder Seite. <code>body</code> ist der gerenderte Seiteninhalt (aus <code>.md</code> oder
+        <code>.ejs</code>), der von <code>build.js</code> hier eingesetzt wird.
+      </p>
+    </div>
+  </div>
+  <h2>scripts/build.js</h2>
+  <pre><code>
+const fse = require("fs-extra");
+const path = require("path");
+const { promisify } = require("util");
+const { glob } = require("glob");
+const frontMatter = require("front-matter");
+const ejs = require("ejs");
+const ejsRenderFile = promisify(require("ejs").renderFile);
+const config = require("../site.config.js");
+const { marked } = require("marked");
+
+const srcPath = "./src";
+const DistPath = "./public";
+const partialsPath = path.join(srcPath, "partials");
+const ejsOptions = { views: [srcPath, partialsPath] };
+
+fse.emptyDirSync(`${DistPath}`);
+fse.copy(`${srcPath}/assets`, `${DistPath}/assets`);
+
+glob("**/*.@(md|ejs|html)", { cwd: `${srcPath}/pages` })
+  .then((files) => {
+    files.forEach((file) => {
+      const fileData = path.parse(file);
+      const destPath = path.join(DistPath, fileData.dir);
+
+      fse
+        .mkdirs(destPath)
+        .then(() => {
+          return fse.readFile(`${srcPath}/pages/${file}`, "utf-8");
+        })
+        .then((data) => {
+          const PageData = frontMatter(data);
+          const templateConfig = Object.assign({}, config, {
+            page: PageData.attributes,
+          });
+          const layout = PageData.attributes.layout || "default";
+
+          let pageContent;
+
+          switch (fileData.ext) {
+            case ".md":
+              pageContent = marked(PageData.body);
+              break;
+            case ".ejs":
+              pageContent = ejs.render(PageData.body, templateConfig);
+              break;
+            default:
+              pageContent = PageData.body;
+          }
+          return { pageContent, templateConfig, layout };
+        })
+        .then(({ pageContent, templateConfig, layout }) => {
+          return ejsRenderFile(
+            `${srcPath}/layouts/${layout}.ejs`,
+            Object.assign({}, config, templateConfig, { body: pageContent }),
+            ejsOptions,
+          );
+        })
+        .then((layoutContent) => {
+          fse.writeFile(`${destPath}/${fileData.name}.html`, layoutContent);
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
+  })
+  .catch((err) => {
+    console.error(err);
+  });
+</code></pre>
+  <div class="spoiler">
+    <button onclick="this.nextElementSibling.classList.toggle('hidden')">Erklärung</button>
+    <div class="hidden">
+      <p>Kernstück: leert <code>public/</code>, kopiert Assets, findet alle Pages via <code>glob</code>, parst Front
+        Matter, rendert <code>.md</code> mit <code>marked</code> bzw. <code>.ejs</code> direkt, packt das Ergebnis ins
+        Layout und schreibt die fertige HTML-Datei nach <code>public/</code>.</p>
+    </div>
+  </div>
+  <h2>Config laden</h2>
+  <p>Ganz oben laden wir die Site-Config, um sie später in den Templates zur Verfügung zu haben.</p>
+  <pre><code class="language-javascript">const config = require(&quot;../site.config.js&quot;);
+</code></pre>
+  <h2>Output-Ordner vorbereiten</h2>
+  <p><code>public/</code> wird geleert (alte Builds sollen nicht liegen bleiben) und die Assets aus
+    <code>src/assets</code> reinkopiert.
+  </p>
+  <pre><code class="language-javascript">fse.emptyDirSync(`${DistPath}`);
+fse.copy(`${srcPath}/assets`, `${DistPath}/assets`);
+</code></pre>
+  <h2>Alle Seiten finden</h2>
+  <p><code>glob</code> sucht rekursiv nach allen <code>.md</code>, <code>.ejs</code> und <code>.html</code>-Dateien
+    innerhalb von <code>src/pages</code>.</p>
+  <pre><code class="language-javascript">glob(&quot;**/*.@(md|ejs|html)&quot;, { cwd: `${srcPath}/pages` })
+</code></pre>
+  <h2>Front Matter auslesen</h2>
+  <p>Für jede gefundene Datei wird zuerst der Inhalt gelesen, dann <code>front-matter</code> genutzt, um Metadaten (z.B.
+    <code>title</code>, <code>layout</code>) vom eigentlichen Inhalt zu trennen.
+  </p>
+  <pre><code class="language-javascript">const PageData = frontMatter(data);
+const templateConfig = Object.assign({}, config, {
+  page: PageData.attributes,
+});
+const layout = PageData.attributes.layout || &quot;default&quot;;
+</code></pre>
+  <h2>Inhalt rendern (je nach Dateityp)</h2>
+  <p>Markdown-Dateien werden mit <code>marked</code> in HTML umgewandelt, <code>.ejs</code>-Dateien direkt mit EJS
+    gerendert. Alles andere (z.B. <code>.html</code>) bleibt unverändert.</p>
+  <pre><code class="language-javascript">switch (fileData.ext) {
+  case &quot;.md&quot;:
+    pageContent = marked(PageData.body);
+    break;
+  case &quot;.ejs&quot;:
+    pageContent = ejs.render(PageData.body, templateConfig);
+    break;
+  default:
+    pageContent = PageData.body;
+}
+</code></pre>
+  <h2>In Layout einsetzen</h2>
+  <p>Der gerenderte Seiteninhalt (<code>body</code>) wird ins gewählte Layout (z.B. <code>default.ejs</code>)
+    eingesetzt.</p>
+  <pre><code class="language-javascript">ejsRenderFile(
+  `${srcPath}/layouts/${layout}.ejs`,
+  Object.assign({}, config, templateConfig, { body: pageContent }),
+  ejsOptions,
+);
+</code></pre>
+  <h2>Fertige Datei schreiben</h2>
+  <p>Das fertige HTML landet unter demselben Namen (aber mit <code>.html</code>-Endung) im Output-Ordner.</p>
+  <pre><code class="language-javascript">fse.writeFile(`${destPath}/${fileData.name}.html`, layoutContent);
+</code></pre>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+
+</html>
