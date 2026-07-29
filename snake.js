@@ -11,6 +11,8 @@
   let direction = "RIGHT"
   let score = 0
   let started = false // wait for a first keypress so the page doesn't alert+reload itself on load
+  let over = false
+  let loopId
 
   function drawGrid() {
     for (let i = 0; i < canvasSize; i++) {
@@ -59,7 +61,7 @@
     if (event.key === 'ArrowRight' && direction !== "LEFT") direction = "RIGHT"
     if (!started && event.key.startsWith('Arrow')) {
       started = true
-      setInterval(gameLoop, 100)
+      loopId = setInterval(gameLoop, 100)
     }
   })
 
@@ -79,7 +81,10 @@
   }
 
   function gameLoop() {
+    if (over) return
     if (checkGameOver()) {
+      over = true
+      clearInterval(loopId)
       alert(`Game Over! Your score: ${score}`)
       document.location.reload()
       return
