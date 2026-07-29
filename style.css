@@ -506,62 +506,65 @@ header {
   color: inherit;
 }
 
-.PlayReset {
-  background-color: rgb(0 0 0 / 20%);
-  border: 1px solid rgb(255 255 255 / 15%);
-  color: inherit;
-  padding: 0.5rem 1.5rem;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-  font-size: 1rem;
-  font-family: var(--font-body);
-}
-
-.PlayReset:hover {
-  background-color: rgb(0 0 0 / 35%);
-}
-
-.ttt-board {
+#board {
+  margin-left: auto;
+  margin-right: auto;
+  width: min(375px, 80vw);
+  height: min(375px, 80vw);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  width: min(240px, 60vw);
+  grid-gap: 5px;
 }
 
-.ttt-cell {
+.square {
+  border: 1px solid rgb(255 255 255 / 25%);
   background-color: rgb(0 0 0 / 25%);
-  border: none;
-  border-radius: 12px;
-  aspect-ratio: 1;
-  font-family: var(--font-heading);
-  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  font-size: 40px;
   color: inherit;
-  cursor: pointer;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.ttt-cell:hover:not(:disabled) {
+.square:hover {
   background-color: rgb(0 0 0 / 40%);
 }
 
-.ttt-cell:disabled {
-  cursor: default;
+#restartButton {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  height: 40px;
+  width: 150px;
+  background-color: rgb(0 0 0 / 20%);
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 40px;
+  font-size: 18px;
+  color: inherit;
+  font-family: var(--font-body);
+  cursor: pointer;
 }
 
-.ttt-status,
-.snake-status {
+#restartButton:hover {
+  background-color: rgb(0 0 0 / 35%);
+}
+
+.PlayCard h2.ttt-message {
+  font-family: var(--font-body);
+  font-weight: normal;
+  letter-spacing: normal;
   font-size: 1rem;
   min-height: 1.5em;
-  margin: 0;
+  color: inherit;
 }
 
-#snakeCanvas {
-  background-color: rgb(0 0 0 / 25%);
+#gameCanvas {
+  border: 1px solid rgb(255 255 255 / 25%);
   border-radius: 16px;
+  display: block;
+  margin: 0 auto;
   max-width: 100%;
-  touch-action: none;
 }
 
 @media (width <= 1024px) {
