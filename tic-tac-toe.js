@@ -1,74 +1,77 @@
 // Tic-Tac-Toe — built by following https://medium.com/@canankorkut1/how-to-create-a-tic-tac-toe-with-html-css-and-javascript-10a25fddd356
 
 (function () {
-  const board = document.getElementById("tttBoard");
-  if (!board) return;
+  const board = document.getElementById('board')
+  if (!board) return
+  const squares = document.getElementsByClassName('square')
+  const players = ['X', 'O']
+  let currentPlayer = players[0]
 
-  const status = document.getElementById("tttStatus");
-  const resetBtn = document.getElementById("tttReset");
+  const endMessage = document.createElement('h2')
+  endMessage.className = 'ttt-message'
+  endMessage.textContent = `X's turn!`
+  board.after(endMessage)
 
-  const WIN_LINES = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8],
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],
-    [0, 4, 8], [2, 4, 6],
-  ];
+  const winning_combinations = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ]
 
-  let cells = Array(9).fill(null);
-  let current = "X";
-  let over = false;
-
-  const cellEls = [];
-  for (let i = 0; i < 9; i++) {
-    const cell = document.createElement("button");
-    cell.type = "button";
-    cell.className = "ttt-cell";
-    cell.setAttribute("aria-label", "Cell " + (i + 1));
-    cell.addEventListener("click", () => handleClick(i));
-    board.appendChild(cell);
-    cellEls.push(cell);
-  }
-
-  function checkResult() {
-    for (const [a, b, c] of WIN_LINES) {
-      if (cells[a] && cells[a] === cells[b] && cells[a] === cells[c]) {
-        return cells[a];
+  function checkWin(currentPlayer) {
+    for (let i = 0; i < winning_combinations.length; i++) {
+      const [a, b, c] = winning_combinations[i]
+      if (squares[a].textContent === currentPlayer && squares[b].textContent === currentPlayer && squares[c].textContent === currentPlayer) {
+        return true
       }
     }
-    return cells.every(Boolean) ? "draw" : null;
+    return false
   }
 
-  function render() {
-    cellEls.forEach((cell, i) => {
-      cell.textContent = cells[i] || "";
-      cell.disabled = Boolean(cells[i]) || over;
-    });
-  }
-
-  function handleClick(i) {
-    if (over || cells[i]) return;
-    cells[i] = current;
-    const result = checkResult();
-    if (result === "draw") {
-      status.textContent = "Draw!";
-      over = true;
-    } else if (result) {
-      status.textContent = result + " wins!";
-      over = true;
-    } else {
-      current = current === "X" ? "O" : "X";
-      status.textContent = "Your turn: " + current;
+  function checkTie() {
+    for (let i = 0; i < squares.length; i++) {
+      if (squares[i].textContent === '') {
+        return false
+      }
     }
-    render();
+    return true
   }
 
-  function reset() {
-    cells = Array(9).fill(null);
-    current = "X";
-    over = false;
-    status.textContent = "Your turn: " + current;
-    render();
+  function restartButton() {
+    for (let i = 0; i < squares.length; i++) {
+      squares[i].textContent = ""
+    }
+    endMessage.textContent = `X's turn!`
+    currentPlayer = players[0]
   }
 
-  resetBtn.addEventListener("click", reset);
-  reset();
+  for (let i = 0; i < squares.length; i++) {
+    squares[i].addEventListener('click', () => {
+      if (squares[i].textContent !== '') {
+        return
+      }
+      squares[i].textContent = currentPlayer
+      if (checkWin(currentPlayer)) {
+        endMessage.textContent = `Game over! ${currentPlayer} wins!`
+        return
+      }
+      if (checkTie()) {
+        endMessage.textContent = `Game is tied!`
+        return
+      }
+      currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0]
+      if (currentPlayer == players[0]) {
+        endMessage.textContent = `X's turn!`
+      } else {
+        endMessage.textContent = `O's turn!`
+      }
+    })
+  }
+
+  document.getElementById('restartButton').addEventListener('click', restartButton)
 })();

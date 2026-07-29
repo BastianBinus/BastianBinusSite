@@ -37,9 +37,20 @@
   <div id="Play-Container">
     <div class="PlayCard" id="Play-TicTacToe">
       <h2>Tic-Tac-Toe</h2>
-      <div class="ttt-board" id="tttBoard"></div>
-      <p class="ttt-status" id="tttStatus">Your turn: X</p>
-      <button type="button" class="PlayReset" id="tttReset">Reset</button>
+      <div id="board">
+        <div class="square" id="square0"></div>
+        <div class="square" id="square1"></div>
+        <div class="square" id="square2"></div>
+        <div class="square" id="square3"></div>
+        <div class="square" id="square4"></div>
+        <div class="square" id="square5"></div>
+        <div class="square" id="square6"></div>
+        <div class="square" id="square7"></div>
+        <div class="square" id="square8"></div>
+      </div>
+      <div id="endGame">
+        <input type="button" value="Restart" id="restartButton">
+      </div>
       <p class="PlayCredit">Built by following <a
           href="https://medium.com/@canankorkut1/how-to-create-a-tic-tac-toe-with-html-css-and-javascript-10a25fddd356"
           target="_blank" rel="noopener">this Tic-Tac-Toe tutorial</a>.</p>
@@ -47,12 +58,11 @@
 
     <div class="PlayCard" id="Play-Snake">
       <h2>Snake</h2>
-      <canvas id="snakeCanvas" width="300" height="300"></canvas>
-      <p class="snake-status" id="snakeStatus">Score: 0</p>
-      <button type="button" class="PlayReset" id="snakeReset">Restart</button>
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
       <p class="PlayCredit">Built by following <a
           href="https://towardsdev.com/building-a-snake-game-in-javascript-a-beginners-guide-bf2e9bfb1079"
-          target="_blank" rel="noopener">this Snake tutorial</a>. Use arrow keys or WASD.</p>
+          target="_blank" rel="noopener">this Snake tutorial</a>. Use arrow keys — game over reloads the page,
+        same as in the tutorial.</p>
     </div>
   </div>
   <script src="tic-tac-toe.js"></script>
