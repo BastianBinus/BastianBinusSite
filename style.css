@@ -269,8 +269,8 @@ header {
 }
 
 #Project-Two {
-  background-color: var(--color-tile-blue);
-  color: var(--color-tile-sage-text);
+  background-color: rgb(26, 20, 32);
+  color: var(--color-tile-indigo-text);
   height: auto;
   display: flex;
   align-items: stretch;
@@ -295,7 +295,10 @@ header {
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: var(--radius-pill, 16px);
+  border-radius: 16px;
+  /* Vorschau ist rein dekorativ: Klicks sollen zur Kachel durchgereicht werden,
+     statt im iframe-Dokument zu landen und das Auf-/Zuklappen zu blockieren. */
+  pointer-events: none;
 }
 
 .Projects-Div#Project-Two.active .projectPreview {
