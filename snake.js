@@ -10,6 +10,7 @@
   let food = { x: Math.floor(Math.random() * canvasSize), y: Math.floor(Math.random() * canvasSize) }
   let direction = "RIGHT"
   let score = 0
+  let started = false // wait for a first keypress so the page doesn't alert+reload itself on load
 
   function drawGrid() {
     for (let i = 0; i < canvasSize; i++) {
@@ -56,6 +57,10 @@
     if (event.key === 'ArrowDown' && direction !== "UP") direction = "DOWN"
     if (event.key === 'ArrowLeft' && direction !== "RIGHT") direction = "LEFT"
     if (event.key === 'ArrowRight' && direction !== "LEFT") direction = "RIGHT"
+    if (!started && event.key.startsWith('Arrow')) {
+      started = true
+      setInterval(gameLoop, 100)
+    }
   })
 
   function checkGameOver() {
@@ -85,5 +90,7 @@
     moveSnake()
   }
 
-  setInterval(gameLoop, 100)
+  drawGrid()
+  drawSnake()
+  drawFood()
 })();
