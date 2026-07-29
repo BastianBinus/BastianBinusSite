@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+  <meta charset="UTF-8">
+  <title>SSG Mockup Widget – Preview</title>
+  <style>
+    /* Preview-Hintergrund, NICHT Teil des Widgets */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #1a1420;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .ssg-mockup {
+      --mock-bg: var(--color-bg, #0d1117);
+      --mock-panel: var(--color-surface, #161b22);
+      --mock-border: var(--color-border, #262c36);
+      --mock-text: var(--color-text, #c9d1d9);
+      --mock-text-dim: var(--color-text-muted, #6e7681);
+      --mock-accent: var(--color-primary, #7c8cf8);
+      --mock-md: var(--color-project1, #6ea8fe);
+      --mock-ejs: var(--color-project2, #e3b341);
+      --mock-html: var(--color-project4, #3fb950);
+
+      width: min(90vw, 640px);
+      width: 100%;
+      height: 100%;
+      background: var(--mock-bg);
+      border: 1px solid var(--mock-border);
+      border-radius: var(--radius-pill, 16px);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      font-family: 'Space Grotesk', monospace;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+    }
+
+    /* Titelleiste */
+    .ssg-mockup__title {
+      height: 32px;
+      flex-shrink: 0;
+      background: var(--mock-panel);
+      border-bottom: 1px solid var(--mock-border);
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      gap: 6px;
+    }
+
+    .ssg-mockup__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--mock-text-dim);
+      opacity: .5;
+    }
+
+    .ssg-mockup__title-label {
+      margin-left: auto;
+      font-size: .65rem;
+      color: var(--mock-text-dim);
+    }
+
+    /* Tab-Leiste */
+    .ssg-mockup__tabs {
+      display: flex;
+      flex-shrink: 0;
+      border-bottom: 1px solid var(--mock-border);
+      background: var(--mock-panel);
+    }
+
+    .ssg-mockup__tab {
+      padding: 6px 14px;
+      font-size: .7rem;
+      color: var(--mock-text-dim);
+      border-right: 1px solid var(--mock-border);
+      border-bottom: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: .5;
+    }
+
+    .ssg-mockup__tab svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    /* Content-Bereich: fixe Höhe, KEIN Grössenwechsel beim Umschalten */
+    .ssg-mockup__content {
+      flex: 1;
+      min-height: 0;
+      position: relative;
+      padding: 14px;
+      overflow: hidden;
+    }
+
+    .ssg-mockup__pane {
+      position: absolute;
+      inset: 14px;
+      overflow-y: auto;
+      font-size: .68rem;
+      line-height: 1.6;
+      color: var(--mock-text);
+      white-space: pre-wrap;
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .ssg-mockup__pane .fm {
+      color: var(--mock-text-dim);
+    }
+
+    .ssg-mockup__pane .tag {
+      color: var(--mock-accent);
+    }
+
+    /* ===== Die eigentliche Animation ===== */
+    /* 3 Panes x 4s = 12s Zyklus, je 4s sichtbar */
+    .ssg-mockup__pane {
+      animation: ssg-cycle 12s infinite;
+    }
+
+    .ssg-mockup__pane:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .ssg-mockup__pane:nth-child(2) {
+      animation-delay: -8s;
+    }
+
+    /* negativer delay = Phase vorspulen */
+    .ssg-mockup__pane:nth-child(3) {
+      animation-delay: -4s;
+    }
+
+    @keyframes ssg-cycle {
+
+      0%,
+      2% {
+        opacity: 0;
+        visibility: hidden;
+      }
+
+      5%,
+      28% {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      31%,
+      100% {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* Tab-Highlight läuft synchron mit, gleiche Timeline-Logik */
+    .ssg-mockup__tab {
+      animation: ssg-tab-cycle 12s infinite;
+    }
+
+    .ssg-mockup__tab:nth-child(1) {
+      animation-delay: 0s;
+      --tc: var(--mock-md);
+    }
+
+    .ssg-mockup__tab:nth-child(2) {
+      animation-delay: -8s;
+      --tc: var(--mock-ejs);
+    }
+
+    .ssg-mockup__tab:nth-child(3) {
+      animation-delay: -4s;
+      --tc: var(--mock-html);
+    }
+
+    @keyframes ssg-tab-cycle {
+
+      0%,
+      2% {
+        opacity: .5;
+        border-bottom-color: transparent;
+        color: var(--mock-text-dim);
+      }
+
+      5%,
+      28% {
+        opacity: 1;
+        border-bottom-color: var(--tc);
+        color: var(--mock-text);
+      }
+
+      31%,
+      100% {
+        opacity: .5;
+        border-bottom-color: transparent;
+        color: var(--mock-text-dim);
+      }
+    }
+
+    /* Terminal-Fuss, statisch */
+    .ssg-mockup__terminal {
+      flex-shrink: 0;
+      height: 84px;
+      border-top: 1px solid var(--mock-border);
+      background: #0a0d12;
+      padding: 8px 12px;
+      font-size: .62rem;
+      color: var(--mock-text-dim);
+      overflow: hidden;
+    }
+
+    .ssg-mockup__terminal .ok {
+      color: var(--mock-html);
+    }
+
+    .ssg-mockup__terminal .path {
+      color: var(--mock-text);
+    }
+
+    /* Pause on hover — der ganze Grund warum CSS statt JS */
+    .ssg-mockup:hover .ssg-mockup__pane,
+    .ssg-mockup:hover .ssg-mockup__tab {
+      animation-play-state: paused;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .ssg-mockup__pane,
+      .ssg-mockup__tab {
+        animation: none;
+      }
+
+      .ssg-mockup__pane:nth-child(1) {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .ssg-mockup__tab:nth-child(1) {
+        opacity: 1;
+        border-bottom-color: var(--mock-md);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="ssg-mockup">
+    <div class="ssg-mockup__title">
+      <span class="ssg-mockup__dot"></span>
+      <span class="ssg-mockup__dot"></span>
+      <span class="ssg-mockup__dot"></span>
+      <span class="ssg-mockup__title-label">ssg-project</span>
+    </div>
+
+    <div class="ssg-mockup__tabs">
+      <div class="ssg-mockup__tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 2v6h6" />
+        </svg>
+        index.md
+      </div>
+      <div class="ssg-mockup__tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+          <path d="M14 2v6h6" />
+        </svg>
+        about.ejs
+      </div>
+      <div class="ssg-mockup__tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+        contact.html
+      </div>
+    </div>
+
+    <div class="ssg-mockup__content">
+      <div class="ssg-mockup__pane"><span class="fm">---
+          layout: "default"
+          title: "Willkommen"
+          ---</span>
+
+        <span class="tag"># Hallo Welt!</span>
+
+        Generiert aus **Markdown**.
+        * Unterstützt EJS
+        * Volle Kontrolle
+      </div>
+
+      <div class="ssg-mockup__pane"><span class="fm">---
+          layout: "page"
+          title: "Über uns"
+          ---</span>
+
+        &lt;div class="about"&gt;
+        <span class="tag">&lt;%= page.title %&gt;</span>
+        <span class="tag">&lt;% users.forEach(...) %&gt;</span>
+        &lt;/div&gt;
+      </div>
+
+      <div class="ssg-mockup__pane"><span class="fm">---
+          layout: "minimal"
+          title: "Kontakt"
+          ---</span>
+
+        &lt;form action="/submit"&gt;
+        &lt;input type="email" /&gt;
+        &lt;button&gt;Senden&lt;/button&gt;
+        &lt;/form&gt;</div>
+    </div>
+
+    <div class="ssg-mockup__terminal">$ node build.js
+      <span class="ok">✓</span> <span class="path">index.md</span> → index.html
+      <span class="ok">✓</span> <span class="path">about.ejs</span> → about.html
+      <span class="ok">✓</span> <span class="path">contact.html</span> → contact.html
+    </div>
+  </div>
+
+</body>
+
+</html>

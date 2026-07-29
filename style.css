@@ -45,6 +45,11 @@ img {
   width: 100%;
   height: auto;
 }
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
 
 /* ==========================================================================
    2. PAGE LAYOUT (Grid für body: header / title / main / footer)
@@ -260,6 +265,9 @@ header {
   background-color: var(--color-tile-blue);
   color: var(--color-tile-sage-text);
   height: auto;
+  display: flex;
+  place-items: center center;
+  object-fit: fill;
 }
 
 #Project-Two .projectPreview {
@@ -267,10 +275,17 @@ header {
   line-height: 1.5;
   opacity: 0.85;
   margin: 1.5rem 1.5rem 0.5rem;
+  color: var(--color-secondary);
   transition:
     font-size 0.35s ease,
     opacity 0.35s ease,
     color 0.35s ease;
+}
+.projectPreview iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: var(--radius-pill, 16px);
 }
 
 .Projects-Div#Project-Two.active .projectPreview {
