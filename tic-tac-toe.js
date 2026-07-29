@@ -1,4 +1,4 @@
-// Tic-Tac-Toe — inspired by https://github.com/utkarszz/Tic-Tac-Toc, rewritten from scratch.
+// Tic-Tac-Toe — built by following https://medium.com/@canankorkut1/how-to-create-a-tic-tac-toe-with-html-css-and-javascript-10a25fddd356
 
 (function () {
   const board = document.getElementById("tttBoard");
