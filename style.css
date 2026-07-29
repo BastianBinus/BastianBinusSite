@@ -13,17 +13,17 @@
   --color-text-muted: #7c6177;
   --color-text-body: #3a352e;
 
-  /* Akzentfarben */
-  --color-tile-red: #5c232b;
-  --color-tile-brown: #422006;
-  --color-tile-blue: #164058;
-  --color-tile-violet: #3d2650;
+  /* Akzentfarben – dunkle Jewel-Tones, abgestimmt auf Hintergrund + Pink */
+  --color-tile-rose: #562029;
+  --color-tile-indigo: #1d3f5d;
+  --color-tile-plum: #4f224f;
+  --color-tile-violet: #382654;
 
-  /* Label-Farben pro Kachel */
-  --color-tile-terracotta-text: #6b4a3a;
-  --color-tile-sage-text: #445a3a;
-  --color-tile-sky-text: #38455c;
-  --color-tile-lavender-text: #563a5c;
+  /* Label-Farben pro Kachel – helle, zur jeweiligen Kachel passende Töne */
+  --color-tile-rose-text: #eac8cd;
+  --color-tile-indigo-text: #c4daee;
+  --color-tile-plum-text: #e8c9e8;
+  --color-tile-violet-text: #d5c9e8;
 
   /* Fonts */
   --font-body: "Inter", sans-serif;
@@ -206,8 +206,8 @@ header {
 
 /* Individuelle Kacheln – aktuell noch per grid-area positioniert */
 #Project-One {
-  background-color: var(--color-tile-red);
-  color: var(--color-secondary);
+  background-color: var(--color-tile-rose);
+  color: var(--color-tile-rose-text);
   height: auto;
   display: flex;
   place-items: center center;
@@ -242,6 +242,11 @@ header {
   min-width: 0;
 }
 
+.Projects-Div#Project-One:hover #Project-One-Mockup,
+.Projects-Div#Project-One.active #Project-One-Mockup {
+  transform: translateY(-8px) scale(1.04);
+}
+
 .projectDesc {
   opacity: 0;
   visibility: hidden;
@@ -251,6 +256,7 @@ header {
   margin-right: 2rem;
   flex-grow: 0;
   flex-basis: 0;
+  min-width: 0;
 }
 
 .Projects-Div.active .projectDesc {
@@ -262,11 +268,12 @@ header {
 }
 
 #Project-Two {
-  background-color: var(--color-tile-blue);
-  color: var(--color-tile-sage-text);
+  background-color: var(--color-tile-indigo);
+  color: var(--color-tile-indigo-text);
   height: auto;
   display: flex;
-  place-items: center center;
+  align-items: stretch;
+  justify-content: center;
   object-fit: fill;
 }
 
@@ -275,7 +282,9 @@ header {
   line-height: 1.5;
   opacity: 0.85;
   margin: 1.5rem 1.5rem 0.5rem;
-  color: var(--color-secondary);
+  color: var(--color-tile-indigo-text);
+  flex-grow: 1;
+  min-width: 0;
   transition:
     font-size 0.35s ease,
     opacity 0.35s ease,
@@ -294,14 +303,14 @@ header {
 }
 
 #Project-Three {
-  background-color: var(--color-tile-brown);
-  color: var(--color-tile-sky-text);
+  background-color: var(--color-tile-plum);
+  color: var(--color-tile-plum-text);
   height: auto;
 }
 
 #Project-Four {
   background-color: var(--color-tile-violet);
-  color: var(--color-tile-lavender-text);
+  color: var(--color-tile-violet-text);
   height: auto;
 }
 
