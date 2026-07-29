@@ -296,9 +296,6 @@ header {
   height: 100%;
   border: none;
   border-radius: 16px;
-  /* Vorschau ist rein dekorativ: Klicks sollen zur Kachel durchgereicht werden,
-     statt im iframe-Dokument zu landen und das Auf-/Zuklappen zu blockieren. */
-  pointer-events: none;
 }
 
 .Projects-Div#Project-Two.active .projectPreview {
