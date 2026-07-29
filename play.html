@@ -5,7 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative frontend experiments and interactive web play projects by Bastian Binus.">
-  <link rel="stylesheet" href="./assets/style.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap"
+    rel="stylesheet">
   <title>Bastian Binus · Play</title>
 </head>
 
@@ -22,11 +27,52 @@
   <script src="nav.js"></script>
 
   <div id="title-box">
-    <h1>Placeholder Title</h1>
+    <h1>Just for fun.</h1>
+    <h1>
+      <span id="sm-body"></span><span id="sm-caret"></span>
+    </h1>
   </div>
+  <script src="schreibmachinePlay.js"></script>
+
+  <div id="Play-Container">
+    <div class="PlayCard" id="Play-TicTacToe">
+      <h2>Tic-Tac-Toe</h2>
+      <div class="ttt-board" id="tttBoard"></div>
+      <p class="ttt-status" id="tttStatus">Your turn: X</p>
+      <button type="button" class="PlayReset" id="tttReset">Reset</button>
+      <p class="PlayCredit">Inspired by <a href="https://github.com/utkarszz/Tic-Tac-Toc" target="_blank"
+          rel="noopener">utkarszz/Tic-Tac-Toc</a>.</p>
+    </div>
+
+    <div class="PlayCard" id="Play-Snake">
+      <h2>Snake</h2>
+      <canvas id="snakeCanvas" width="300" height="300"></canvas>
+      <p class="snake-status" id="snakeStatus">Score: 0</p>
+      <button type="button" class="PlayReset" id="snakeReset">Restart</button>
+      <p class="PlayCredit">Built by following <a
+          href="https://towardsdev.com/building-a-snake-game-in-javascript-a-beginners-guide-bf2e9bfb1079"
+          target="_blank" rel="noopener">this Snake tutorial</a>. Use arrow keys or WASD.</p>
+    </div>
+  </div>
+  <script src="tic-tac-toe.js"></script>
+  <script src="snake.js"></script>
 
   <footer id="Footer-Container">
-    FOOTER
+    <div class="Contact">
+      <div class="PhoNum">
+        <h3>Phone Number:</h3>
+        <p>+41772233442</p>
+      </div>
+      <div class="Mail">
+        <h3>Email:</h3>
+        <p>bastian.binus@pm.me</p>
+      </div>
+      <div class="Adresse">
+        <h3>Bastian Binus:</h3>
+        <p>General Guisan Strasse 22 Arlesheim 4144</p>
+      </div>
+      <a href="https://www.linkedin.com/in/bastian-binus-295638406/" target="_blank" class="btn">LinkedIn</a>
+    </div>
   </footer>
   <script type="speculationrules"></script>
 </body>
