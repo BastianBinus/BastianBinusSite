@@ -210,7 +210,8 @@ header {
   color: var(--color-tile-rose-text);
   height: auto;
   display: flex;
-  place-items: center center;
+  align-items: stretch;
+  justify-content: center;
   object-fit: fill;
 }
 
@@ -294,7 +295,10 @@ header {
   width: 100%;
   height: 100%;
   border: none;
-  border-radius: var(--radius-pill, 16px);
+  border-radius: 20px;
+  /* Vorschau ist rein dekorativ: Klicks sollen zur Kachel durchgereicht werden,
+     statt im iframe-Dokument zu landen und das Auf-/Zuklappen zu blockieren. */
+  pointer-events: none;
 }
 
 .Projects-Div#Project-Two.active .projectPreview {
@@ -450,6 +454,124 @@ header {
 .Contact * {
   margin-left: clamp(0.5rem, 10vw, 10vw) !important;
   display: inline-block !important;
+}
+
+/* ==========================================================================
+   8. PLAY SECTION
+   ========================================================================== */
+
+#Play-Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  grid-area: main;
+  margin: 1rem 15%;
+  width: 70%;
+  gap: clamp(20px, 4vw, 50px);
+  animation: fadeIn 1000ms;
+}
+
+.PlayCard {
+  flex: 1 1 320px;
+  max-width: 420px;
+  border-radius: 50px;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.PlayCard h2 {
+  font-family: var(--font-heading);
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+#Play-TicTacToe {
+  background-color: var(--color-tile-plum);
+  color: var(--color-tile-plum-text);
+}
+
+#Play-Snake {
+  background-color: var(--color-tile-violet);
+  color: var(--color-tile-violet-text);
+}
+
+.PlayCredit {
+  font-size: 0.8rem;
+  opacity: 0.75;
+  margin: 0;
+}
+
+.PlayCredit a {
+  color: inherit;
+}
+
+.PlayReset {
+  background-color: rgb(0 0 0 / 20%);
+  border: 1px solid rgb(255 255 255 / 15%);
+  color: inherit;
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  font-size: 1rem;
+  font-family: var(--font-body);
+}
+
+.PlayReset:hover {
+  background-color: rgb(0 0 0 / 35%);
+}
+
+.ttt-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  width: min(240px, 60vw);
+}
+
+.ttt-cell {
+  background-color: rgb(0 0 0 / 25%);
+  border: none;
+  border-radius: 12px;
+  aspect-ratio: 1;
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ttt-cell:hover:not(:disabled) {
+  background-color: rgb(0 0 0 / 40%);
+}
+
+.ttt-cell:disabled {
+  cursor: default;
+}
+
+.ttt-status,
+.snake-status {
+  font-size: 1rem;
+  min-height: 1.5em;
+  margin: 0;
+}
+
+#snakeCanvas {
+  background-color: rgb(0 0 0 / 25%);
+  border-radius: 16px;
+  max-width: 100%;
+  touch-action: none;
+}
+
+@media (width <= 1024px) {
+  #Play-Container {
+    margin: 1rem 5%;
+    width: 90%;
+  }
 }
 
 /* ==========================================================================
