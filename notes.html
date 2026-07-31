@@ -36,11 +36,82 @@
   </div>
   <script src="schreibmachineNotes.js"></script>
 
+  <!--
+    ===========================================================================
+    STICKY NOTES — TUTORIAL / TODO
+
+    Goal: a form to write a note + a board that shows all saved notes,
+    talking to the notes-api container (see notes-api/server.js) over
+    fetch(). Follow the numbered steps below, in order. Each one tells you
+    what to build and what to search for — nothing here is finished code.
+
+    Before any of this can work end-to-end you also need:
+      - a `notes` table defined in notes-api/init.sql
+      - GET/POST/DELETE /api/notes routes written in notes-api/server.js
+    ===========================================================================
+  -->
+
   <div id="Notes-Container">
-    <p>A small sticky-note board — write a note, it gets saved to a database through a self-hosted API running in
-      a Docker container, so it's still there next time you visit. Still building the backend for it, so there's
-      nothing to click on yet.</p>
+
+    <!--
+      STEP 1 — the form to add a note.
+      You need: a <textarea> (or <input>) for the note text, and a submit
+      button. Wrap them in a <form> so pressing Enter/clicking submit
+      triggers ONE event you can catch in JS.
+      Google: "html form textarea submit button"
+    -->
+
+
+    <!--
+      STEP 2 — a status line.
+      Somewhere to show "loading…", "no notes yet", or an error message
+      like "can't reach the API". A plain <p> with an id is enough — you'll
+      set its .textContent from JS.
+    -->
+
+
+    <!--
+      STEP 3 — the board.
+      An empty container element (e.g. a <div>) that your JS will fill with
+      one child element per note. Give it an id so you can grab it with
+      document.getElementById(...).
+    -->
+
   </div>
+
+  <!--
+    STEP 4 — write notes.js (a new file, linked below) and fill in these
+    pieces. Read notes-api/server.js's TODO comment first so you know what
+    the API will look like once you've written its routes.
+
+      a) On page load: fetch('http://localhost:4000/api/notes') to GET the
+         current list of notes.
+         Google: "javascript fetch API get request json"
+
+      b) Turn that list into DOM elements and put them inside your board
+         container from step 3 (one element per note, showing note.text).
+         Google: "javascript create element and append to div"
+
+      c) Listen for your form's "submit" event (step 1). Remember to call
+         event.preventDefault() so the page doesn't reload. Read the
+         textarea's value, then fetch() again — this time a POST request
+         with a JSON body ({ text: ... }) and a Content-Type header.
+         Google: "javascript fetch POST request json body"
+
+      d) After a successful POST, refresh the board (re-run step (a)+(b),
+         or just add the new note to the DOM directly) and clear the
+         textarea.
+
+      e) Optional: a delete button per note that sends a DELETE request to
+         http://localhost:4000/api/notes/<id> and then removes that note
+         from the board.
+         Google: "javascript fetch DELETE request with id"
+
+    None of this will actually load anything until notes-api's routes and
+    table exist AND you have `docker compose up` running locally — the
+    live portfolio site won't reach your local Docker containers.
+  -->
+  <script src="notes.js"></script>
 
   <footer id="Footer-Container">
     <div class="Contact">
