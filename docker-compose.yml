@@ -1,0 +1,25 @@
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: notes
+      POSTGRES_PASSWORD: notes
+      POSTGRES_DB: notes
+    volumes:
+      - notes-db-data:/var/lib/postgresql/data
+      - ./notes-api/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+  api:
+    build: ./notes-api
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgres://notes:notes@db:5432/notes
+      PORT: 4000
+    ports:
+      - "4000:4000"
+    depends_on:
+      - db
+
+volumes:
+  notes-db-data:
