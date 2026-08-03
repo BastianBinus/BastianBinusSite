@@ -1,13 +1,13 @@
 /* Some positioning and ratios */
 #sticky-board {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  justify-items: center;
   gap: 2rem;
 }
 
 .sticky-container {
-  flex: 1 1 220px;
+  width: 100%;
   max-width: 270px;
   position: relative;
 }
