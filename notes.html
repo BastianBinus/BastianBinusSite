@@ -7,6 +7,7 @@
   <meta name="description"
     content="Notes and insights from Bastian Binus on web development, design, and personal projects.">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stickyNote.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -16,6 +17,21 @@
 </head>
 
 <body>
+  <!--#######################################################################################
+  ###########################################################################################-->
+  <svg width="0" height="0">
+    <defs>
+      <clipPath id="stickyClip" clipPathUnits="objectBoundingBox">
+        <path d="M 0 0 Q 0 0.69, 0.03 0.96 0.03 0.96, 1 0.96 Q 0.96 0.69, 0.96 0 0.96 0, 0 0" stroke-linejoin="round"
+          stroke-linecap="square" />
+      </clipPath>
+    </defs>
+  </svg>
+  <div id="sticky-board"></div>
+
+  <!--#######################################################################################
+  ###########################################################################################-->
+
   <header id="header-box">
     <nav id="main-nav">
       <div class="Nav-Bg">
@@ -37,9 +53,24 @@
   <script src="schreibmachineNotes.js"></script>
 
   <div id="Notes-Container">
-    <p>Coming soon.</p>
-  </div>
 
+    <form>
+      <label for="note-title">Title:</label>
+      <input type="text" name="Note-Title" id="note-title">
+
+      <label for="note-content">Content:</label>
+      <textarea name="Note-Content" id="note-content" rows="5"></textarea>
+
+      <button type="submit">Add Note</button>
+    </form>
+
+    <div id="sticky-board">
+
+    </div>
+
+
+  </div>
+  <script src="notes.js"></script>
   <footer id="Footer-Container">
     <div class="Contact">
       <div class="PhoNum">
