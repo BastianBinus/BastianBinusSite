@@ -8,7 +8,7 @@
 
 .sticky-container {
   width: 100%;
-  max-width: 270px;
+  max-width: 300px;
   position: relative;
 }
 
@@ -53,19 +53,19 @@
   text-align: center;
   box-sizing: border-box;
   overflow: hidden;
-  padding: 18% 12% 10%;
+  padding: 15% 10% 8%;
 
   font-family: var(--font-body);
   color: var(--color-text-dark);
-  font-size: 1rem;
-  line-height: 1.4;
+  font-size: 0.85rem;
+  line-height: 1.35;
 
   clip-path: url(#stickyClip);
 }
 
 .sticky-content strong {
   font-family: var(--font-heading);
-  font-size: 1.15em;
+  font-size: 1.1em;
   margin-bottom: 0.4em;
 }
 
@@ -77,42 +77,3 @@ body {
   font-size: 16px;
 }
 
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-.container-inner {
-  width: 50%;
-  margin: 25px;
-}
-
-/* Add responsiveness */
-@media screen and (min-width: 640px) {
-  .sticky-content {
-    font-size: 1.5rem;
-  }
-  .container-inner {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .sticky-content {
-    font-size: 1.5rem;
-  }
-  .container-inner {
-    width: 50%;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .sticky-content {
-    font-size: 1.875rem;
-  }
-  .container-inner {
-    width: 25%;
-  }
-}
