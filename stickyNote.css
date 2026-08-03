@@ -1,7 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Kalam&display=swap");
-
 /* Some positioning and ratios */
+#sticky-board {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
 .sticky-container {
+  flex: 1 1 220px;
   max-width: 270px;
   position: relative;
 }
@@ -36,23 +42,31 @@
 
 /* The sticky note itself */
 .sticky-content {
-  background: linear-gradient(
-    180deg,
-    rgba(187, 235, 255, 1) 0%,
-    rgba(187, 235, 255, 1) 12%,
-    rgba(170, 220, 241, 1) 75%,
-    rgba(195, 229, 244, 1) 100%
-  );
+  background: linear-gradient(180deg, #ffd9df 0%, var(--color-primary) 100%);
   width: 100%;
   height: 100%;
 
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  font-family: "Kalam", cursive;
-  font-size: 1.25rem;
+  text-align: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 18% 12% 10%;
+
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  font-size: 1rem;
+  line-height: 1.4;
 
   clip-path: url(#stickyClip);
+}
+
+.sticky-content strong {
+  font-family: var(--font-heading);
+  font-size: 1.15em;
+  margin-bottom: 0.4em;
 }
 
 /* Position the sticky nicely, so it looks better */

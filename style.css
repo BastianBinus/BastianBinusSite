@@ -592,6 +592,56 @@ header {
   animation: fadeIn 1000ms;
 }
 
+#Notes-Container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+#Notes-Container label {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+#Notes-Container input,
+#Notes-Container textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-text-light);
+  background-color: rgb(0 0 0 / 20%);
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 20px;
+  padding: 0.75rem 1.25rem;
+  resize: vertical;
+}
+
+#Notes-Container input:focus,
+#Notes-Container textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+#Notes-Container button {
+  align-self: center;
+  font-family: var(--font-heading);
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--color-bg);
+  background: var(--color-primary);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.75rem 2rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+#Notes-Container button:hover {
+  opacity: 0.85;
+}
+
 /* ==========================================================================
 7. @-Commands / Animationen
    ========================================================================== */
