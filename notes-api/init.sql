@@ -1,4 +1,0 @@
--- Runs automatically the first time the db container starts (Postgres
--- picks up any .sql files in /docker-entrypoint-initdb.d).
---
--- TODO: define your notes table here, e.g. CREATE TABLE notes (...);
