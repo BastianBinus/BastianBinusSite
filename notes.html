@@ -87,7 +87,21 @@
       <a href="https://www.linkedin.com/in/bastian-binus-295638406/" target="_blank" class="btn">LinkedIn</a>
     </div>
   </footer>
-  <script type="speculationrules"></script>
+  <script type="speculationrules">
+  {
+    "prerender": [
+      {
+        "where": {
+          "and": [
+            { "href_matches": "/*" },
+            { "not": { "href_matches": "/*.mp4" } }
+          ]
+        },
+        "eagerness": "moderate"
+      }
+    ]
+  }
+  </script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 
 (function () {
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var phrases = ["coming soon", "Docker + a database", "still building"];
+  var phrases = ["Sticky Notes", "local storage", "no backend"];
   var pi = 0,
     ci = 0,
     deleting = false,

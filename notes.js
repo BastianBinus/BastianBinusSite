@@ -16,11 +16,6 @@ function handleSubmit(event) {
 const form = document.querySelector("form");
 form.addEventListener("submit", handleSubmit);
 
-function submit_form() {
-  document.getElementById("note-title").submit();
-  document.getElementById("note-content").reset();
-}
-
 function renderNotes() {
   const board = document.getElementById("sticky-board");
   board.innerHTML = "";
