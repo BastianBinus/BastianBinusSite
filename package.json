@@ -23,5 +23,8 @@
     "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-standard": "^34.0.0"
+  },
+  "dependencies": {
+    "express": "^4.19.0"
   }
 }
