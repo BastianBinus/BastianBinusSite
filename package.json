@@ -4,7 +4,8 @@
   "description": "",
   "main": "foldingProjects.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:desk": "esbuild desk/src/main.js --bundle --minify --format=esm --target=es2020 --outfile=desk/desk.js"
   },
   "repository": {
     "type": "git",
@@ -19,9 +20,11 @@
   },
   "homepage": "https://github.com/BastianBinus/BastianBinusSite#readme",
   "devDependencies": {
+    "esbuild": "^0.28.2",
     "prettier": "^3.9.6",
     "stylelint": "^14.16.1",
     "stylelint-config-prettier": "^9.0.5",
-    "stylelint-config-standard": "^34.0.0"
+    "stylelint-config-standard": "^34.0.0",
+    "three": "^0.186.1"
   }
 }
