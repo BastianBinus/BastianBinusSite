@@ -1,0 +1,629 @@
+/* Void stage: the video frame (720x1280) is the coordinate system; every
+   overlay is placed in % of that frame so it stays glued to the footage. */
+:root {
+  color-scheme: dark;
+  --void: #000;
+  --ink: #f2efe8;
+  --muted: rgba(242, 239, 232, 0.5);
+  --line: rgba(255, 255, 255, 0.16);
+  --engrave: rgba(30, 22, 14, 0.62);
+  --engrave-code: rgba(25, 18, 10, 0.86);
+  --ridge: rgba(255, 255, 255, 0.45);
+  --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --radius: 3.79% / 6%;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  overscroll-behavior: none;
+  background: var(--void);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* without a valid key from the NFC link only a quiet lock screen shows */
+[data-state="locked"] .void,
+[data-state="locked"] .float {
+  display: none;
+}
+
+.lock {
+  position: fixed;
+  inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  color: var(--muted);
+  text-align: center;
+}
+
+[data-state="locked"] .lock {
+  display: flex;
+}
+
+.lock-mark {
+  font: 600 22px/1 var(--sans);
+  letter-spacing: 0.3em;
+  padding-left: 0.3em;
+}
+
+.lock-msg {
+  margin: 0;
+  font: 500 11px/1.4 var(--sans);
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+body {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- stage ---------- */
+.void {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: var(--void);
+}
+
+/* wider than a phone on purpose: the footage has black margins, so the wallet itself fills the width */
+.stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: min(118vw, 56.25vh);
+  aspect-ratio: 720 / 1280;
+  cursor: pointer;
+  outline: none;
+  transition: filter 0.6s ease;
+}
+
+@supports (height: 100dvh) {
+  .stage {
+    width: min(118vw, 56.25dvh);
+  }
+}
+
+.stage:focus-visible {
+  outline: 2px solid var(--line);
+  outline-offset: -6px;
+}
+
+[data-state="closed"] .stage {
+  animation: bob 5s ease-in-out infinite;
+}
+
+.stage.dim {
+  filter: brightness(0.3) blur(3px);
+}
+
+.layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  display: block;
+  object-fit: cover;
+  visibility: hidden;
+}
+
+/* stills while at rest, videos only while moving */
+[data-state="closed"] .base-closed,
+[data-state="opening"] #vOpen,
+[data-state="closing"] #vClose,
+body:not([data-state="closed"]):not([data-state="opening"]):not([data-state="closing"]) .base-open {
+  visibility: visible;
+}
+
+/* the upper flap closes the wallet again */
+.flap {
+  position: absolute;
+  left: 11.67%;
+  top: 8.67%;
+  width: 76.67%;
+  height: 36.88%;
+  padding: 0;
+  border: 0;
+  border-radius: 4%;
+  background: transparent;
+  cursor: pointer;
+  display: none;
+}
+
+[data-state="open"] .flap {
+  display: block;
+}
+
+.flap:focus-visible {
+  outline: 2px solid var(--line);
+  outline-offset: -6px;
+}
+
+/* empty pockets, shown under a card that has left its slot */
+.patch {
+  position: absolute;
+  left: 16.111%;
+  width: 67.5%;
+  height: auto;
+  max-width: none;
+}
+
+.patch[data-patch="id"] { top: 54.844%; }
+.patch[data-patch="snap"] { top: 60.859%; }
+.patch[data-patch="insta"] { top: 66.563%; }
+
+/* each slot clips its card at the pocket line, so the card slides out from behind the leather */
+.slot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.slot[data-slot="id"] { clip-path: inset(0 0 39.141% 0); --top: 55.781%; --pocket: 60.859%; }
+.slot[data-slot="snap"] { clip-path: inset(0 0 33.516% 0); --top: 61.797%; --pocket: 66.484%; }
+.slot[data-slot="insta"] { clip-path: inset(0 0 27.969% 0); --top: 67.5%; --pocket: 72.031%; }
+
+.slot > .card,
+.ghost {
+  position: absolute;
+  left: 18.889%;
+  top: var(--top);
+  width: 62.222%;
+  aspect-ratio: 448 / 283;
+}
+
+.ghost {
+  visibility: hidden;
+}
+
+.pshade {
+  position: absolute;
+  left: 16%;
+  right: 16%;
+  top: calc(var(--pocket) - 1.4%);
+  height: 1.4%;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.slot.out .pshade {
+  opacity: 1;
+}
+
+/* ---------- card ---------- */
+.card {
+  appearance: none;
+  -webkit-appearance: none;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--tex) center / 100% 100% no-repeat;
+  container-type: inline-size;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease 0.15s;
+}
+
+body:not([data-state="closed"]):not([data-state="opening"]):not([data-state="closing"]) .card {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+[data-state="closing"] .card {
+  transition: opacity 0.25s ease;
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 2px;
+}
+
+.card[data-card="id"] { --tex: url(media/card-id.jpg); --glow: rgba(255, 255, 255, 0.1); }
+.card[data-card="snap"] { --tex: url(media/card-snap.jpg); --glow: rgba(255, 196, 0, 0.16); }
+.card[data-card="insta"] { --tex: url(media/card-insta.jpg); --glow: rgba(255, 120, 150, 0.16); }
+
+/* engraving: a dark multiplied layer with a light ridge 0.18cqw below it */
+.g {
+  position: relative;
+}
+
+.g > .dk {
+  color: var(--engrave);
+  mix-blend-mode: multiply;
+}
+
+.g > .hl {
+  position: absolute;
+  inset: 0;
+  color: var(--ridge);
+  transform: translateY(0.18cqw);
+  mix-blend-mode: screen;
+}
+
+.chip > span,
+.wave > span,
+.mrz > span {
+  display: block;
+}
+
+.row {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 12.05cqw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 6.47cqw;
+  font-size: 3.55cqw;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.row .g > span {
+  display: flex;
+  align-items: center;
+  gap: 2.46cqw;
+}
+
+.row svg {
+  width: 4.91cqw;
+  height: 4.91cqw;
+  fill: currentColor;
+  flex: none;
+}
+
+.handle {
+  font-size: 3.95cqw;
+  letter-spacing: 0.06em;
+  text-transform: none;
+}
+
+/* passport photo: grayscale print on the metal, edges fading out */
+.photo {
+  position: absolute;
+  left: 6.47cqw;
+  top: 15.6cqw;
+  width: 22.3cqw;
+  height: 28.7cqw;
+  border-radius: 1.4cqw;
+  background: var(--photo) center / cover no-repeat;
+  filter: grayscale(1) contrast(1.05) brightness(1.08);
+  opacity: 0.94;
+  -webkit-mask: radial-gradient(ellipse 78% 82% at 50% 42%, #000 62%, transparent 100%);
+  mask: radial-gradient(ellipse 78% 82% at 50% 42%, #000 62%, transparent 100%);
+}
+
+.card .chip {
+  position: absolute;
+  left: 32.2cqw;
+  top: 17.5cqw;
+}
+
+.chip svg {
+  display: block;
+  width: 11.16cqw;
+  height: 8.48cqw;
+}
+
+.card .wave {
+  position: absolute;
+  left: 35.3cqw;
+  top: 29.5cqw;
+}
+
+.wave svg {
+  display: block;
+  width: 4.91cqw;
+  height: 5.8cqw;
+}
+
+.card .fields {
+  position: absolute;
+  left: 49cqw;
+  top: 16.07cqw;
+}
+
+.fields > span {
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: start;
+  column-gap: 7cqw;
+}
+
+.f {
+  display: flex;
+  flex-direction: column;
+}
+
+.f.wide {
+  grid-column: 1 / -1;
+}
+
+.lab {
+  font-size: 2.34cqw;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.val {
+  margin: 0.45cqw 0 2.46cqw;
+  font-size: 5.13cqw;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.card .mrz {
+  position: absolute;
+  left: 6.47cqw;
+  bottom: 4.46cqw;
+  font-family: var(--mono);
+  font-size: 3.39cqw;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.card .name {
+  position: absolute;
+  left: 6.47cqw;
+  bottom: 6.7cqw;
+  font-size: 7.37cqw;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.card .name.small {
+  font-size: 6.47cqw;
+}
+
+.name > span {
+  display: block;
+}
+
+.hint-s {
+  display: block;
+  margin-top: 1.79cqw;
+  font-size: 2.57cqw;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.code {
+  position: absolute;
+  right: 5.36cqw;
+  bottom: 4.91cqw;
+  width: 39.73cqw;
+  height: 39.73cqw;
+}
+
+.code > span {
+  position: absolute;
+  inset: 0;
+  -webkit-mask: var(--mask) center / 100% 100% no-repeat;
+  mask: var(--mask) center / 100% 100% no-repeat;
+}
+
+.code > .dk {
+  background: var(--engrave-code);
+  mix-blend-mode: multiply;
+}
+
+.code > .hl {
+  background: var(--ridge);
+  transform: translateY(0.18cqw);
+  mix-blend-mode: screen;
+}
+
+/* ---------- floating card ---------- */
+.float {
+  position: fixed;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(20px, 4vh, 36px);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  perspective: 1100px;
+  visibility: hidden;
+}
+
+[data-state="floating-in"] .float,
+[data-state="floating"] .float,
+[data-state="returning"] .float {
+  visibility: visible;
+}
+
+.fwrap {
+  position: relative;
+  width: min(84vw, 420px, 70vh);
+  aspect-ratio: 448 / 283;
+  max-width: 100%;
+  transform-style: preserve-3d;
+}
+
+.tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.tilt > .card {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.75), 0 0 90px var(--glow);
+}
+
+.shine {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: var(--radius);
+  pointer-events: none;
+  background: linear-gradient(110deg, transparent 38%, rgba(255, 255, 255, 0.24) 50%, transparent 62%);
+  background-size: 260% 100%;
+  background-position: var(--sx, 50%) 0;
+  mix-blend-mode: screen;
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+[data-state="floating"] .shine {
+  opacity: 1;
+}
+
+.ui {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+[data-state="floating"] .ui {
+  opacity: 1;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  padding: 14px 22px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  color: var(--ink);
+  font: 600 15px/1 var(--sans);
+  text-decoration: none;
+}
+
+.cta:focus-visible,
+.close:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.back-hint {
+  margin: 0;
+  font: 500 11px/1.4 var(--sans);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+}
+
+.close {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 12px);
+  right: calc(env(safe-area-inset-right, 0px) + 12px);
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ink);
+  font-size: 16px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+[data-state="floating"] .close {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ---------- hint line ---------- */
+.hint {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(env(safe-area-inset-bottom, 0px) + 26px);
+  margin: 0;
+  text-align: center;
+  font: 600 11px/1 var(--sans);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.hint span {
+  display: none;
+}
+
+[data-state="closed"] .h-closed {
+  display: inline;
+  animation: pulse 2.4s ease-in-out infinite;
+}
+
+[data-state="open"] .h-open {
+  display: inline;
+  animation: fadein 0.8s ease 0.4s both;
+}
+
+.nojs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  text-align: center;
+  line-height: 2;
+}
+
+.nojs a {
+  color: var(--ink);
+}
+
+@keyframes bob {
+  50% { transform: translateY(-1.2%); }
+}
+
+@keyframes pulse {
+  50% { opacity: 0.35; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage,
+  .hint span {
+    animation: none !important;
+  }
+}

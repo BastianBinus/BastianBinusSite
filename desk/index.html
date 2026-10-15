@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#050505">
+  <meta name="description"
+    content="Interactive portfolio of Bastian Binus: open the book on the desk and flip through projects, about and contact.">
+  <title>Bastian Binus · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 16 16%22%3E%3Ccircle cx=%228%22 cy=%228%22 r=%226%22 fill=%22%23f2eee8%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="desk.css">
+</head>
+
+<body>
+  <canvas id="scene" aria-hidden="true"></canvas>
+
+  <header class="hud-top">
+    <a class="brand" href="../work.html" aria-label="Classic site">● bastian binus</a>
+    <a class="cta" href="#contact" data-spread="5">Get in touch</a>
+  </header>
+
+  <div class="intro">
+    <h1>Interactive Portfolio<br>that you can explore</h1>
+    <p>Tap the book to open it. Swipe to turn the pages.</p>
+  </div>
+
+  <nav class="controls" aria-label="Book navigation">
+    <button id="close" type="button" aria-label="Close the book">✕</button>
+    <button id="prev" type="button" aria-label="Previous page">‹</button>
+    <span id="spread-label" aria-live="polite"></span>
+    <button id="next" type="button" aria-label="Next page">›</button>
+  </nav>
+
+  <div id="loader" aria-hidden="true"><span></span></div>
+
+  <div class="fallback">
+    <p>This page needs WebGL. Here is the <a href="../work.html">classic version</a>.</p>
+  </div>
+
+  <!-- Same content as text, for screen readers and search engines. -->
+  <main class="sr-only">
+    <h2>Bastian Binus</h2>
+    <p>IT apprentice at Pax in Switzerland. I build things for the web to understand how they work.</p>
+    <h2>About</h2>
+    <p>My first Raspberry Pi got me into IT. I'm in the second year of my IT apprenticeship at Pax and build my own
+      projects with HTML, CSS and JavaScript, lately also Java, Bash and SQL.</p>
+    <h2>Color Composer</h2>
+    <p>A color picker that turns hue, saturation and lightness into HSL, RGB and hex, each one click to copy.</p>
+    <p><a href="../ColorPicker/Color-Composer.html">Open Color Composer</a></p>
+    <h2>Static Site Generator</h2>
+    <p>A Node.js static site generator for Markdown, EJS and HTML.</p>
+    <p><a href="../Public-Site-Generator/index.html">Open the Static Site Generator</a></p>
+    <h2>Contact</h2>
+    <p><a href="mailto:bastian.binus@pm.me">bastian.binus@pm.me</a>, <a href="tel:+41772233442">+41 77 223 34
+        42</a>, <a href="https://github.com/BastianBinus">GitHub</a></p>
+  </main>
+
+  <script type="module" src="desk.js"></script>
+</body>
+
+</html>
